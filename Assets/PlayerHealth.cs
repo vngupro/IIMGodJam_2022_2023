@@ -1,11 +1,18 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerHealth : MonoBehaviour
 {
     public int maxHealth = 100;
     public int currentHealth;
 
+    public float invincibilityTime = 2f;
+
     public HealthBar healthBar;
+
+    public bool isInvincible = false;
+
+    public SpriteRenderer graphics;
 
 
     void Start()
@@ -23,9 +30,34 @@ public class PlayerHealth : MonoBehaviour
     }
 
 
-    void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
-        currentHealth -= damage;
-        healthBar.SetHealth(currentHealth);
+        if (!isInvincible)
+        {
+            currentHealth -= damage;
+            healthBar.SetHealth(currentHealth);
+            isInvincible = true;
+            StartCoroutine(InvincibilityFlash());
+            StartCoroutine(InvincibilityDelay());
+
+        }
+        
     }
+    public IEnumerator InvincibilityFlash()
+    {
+        while (isInvincible)
+        {
+            graphics.color = new Color(1f, 1f, 1f, 0f);
+            yield return new WaitForSeconds(0.2f);
+            graphics.color = new Color(1f, 1f, 1f, 1f);
+            yield return new WaitForSeconds(0.2f);
+        }
+    }
+
+    public IEnumerator InvincibilityDelay()
+    {
+        yield return new WaitForSeconds(invincibilityTime);
+        isInvincible=false;
+    }
+    
 }
