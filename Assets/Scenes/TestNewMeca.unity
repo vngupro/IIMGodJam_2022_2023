@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mousePosition: {x: 0, y: 0}
-  screenSize: {x: 256, y: 196}
+  screenSize: {x: 256, y: 192}
   line: {fileID: 4603450082420096138, guid: 521661d4b9b92464396b13fe86a3541d, type: 3}
   pixelByUnits: 16
 --- !u!212 &1543337605
