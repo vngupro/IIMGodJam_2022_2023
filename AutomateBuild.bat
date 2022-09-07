@@ -1,0 +1,1 @@
+"C:\Program Files\Unity\2021.3.9f1\Editor\Unity" -quit -batchmode -projectPath. -executeMethod BuildPlayer.Build

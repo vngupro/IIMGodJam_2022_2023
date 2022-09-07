@@ -20,7 +20,7 @@ public class SoundManager : MonoBehaviour
 
             //Load AudioMixer
             audioMixer = Resources.Load<AudioMixer>("Audio/NewAudioMixer");
-            //AudioMixerGroup[] audioMixGroup = audioMixer.FindMatchingGroups("Master");
+            AudioMixerGroup[] audioMixGroup = audioMixer.FindMatchingGroups("Master");
 
             foreach (Sound s in sounds)
             {
@@ -35,7 +35,7 @@ public class SoundManager : MonoBehaviour
                 s.source.mute = s.mute;
                 s.source.loop = s.loop;
                 s.source.playOnAwake = s.playOnAwake;
-                //s.source.outputAudioMixerGroup = audioMixGroup[0];
+                s.source.outputAudioMixerGroup = audioMixGroup[0];
             }
 
             // | Listen To
