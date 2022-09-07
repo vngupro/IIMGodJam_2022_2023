@@ -30,9 +30,13 @@ public class AILineShapeDetection : MonoBehaviour
     [SerializeField] private List<Vector2> yLowList;
     [SerializeField] private List<Vector2> xHighList;
     [SerializeField] private List<Vector2> xLowList;
+    [SerializeField] private List<float> cardinalsCoef;
+    private bool antiExploit;
+    private Animator anim;
     private void Start()
     {
         line = GetComponent<LineRenderer>();
+        anim = GetComponent<Animator>();
     }
     public void AIShape(Vector2 startShape, Vector2 endShape)
     {
@@ -60,20 +64,24 @@ public class AILineShapeDetection : MonoBehaviour
         coef.Sort();//tri
         positionsX.Sort();
         positionsY.Sort();
-        tolerence += (tolerence / 25)*line.positionCount;
+        tolerence += (tolerence / 22)*line.positionCount;
+        supposeLineLength = Mathf.Sqrt(Mathf.Pow(positions[0].x - positions[positions.Count-1].x, 2) + Mathf.Pow(positions[0].y - positions[positions.Count - 1].y, 2));
         //si la droite n est pas verticale
-        if (Mathf.Sqrt((coef[0] - coef[coef.Count - 1]) * (coef[0] - coef[coef.Count - 1])) < tolerence)//valeur absolue
+        if (Mathf.Sqrt((coef[0] - coef[coef.Count - 1]) * (coef[0] - coef[coef.Count - 1])) < tolerence && (supposeLineLength - supposeLineLength/10 < lineLength && supposeLineLength + supposeLineLength / 10 > lineLength))//valeur absolue
         {
             shape = ShapeType.Line;
         }
         //si elle est verticale
-        else if (moyenne - tolerence/2 < positionsX[0] && moyenne + tolerence/2 > positionsX[positionsX.Count - 1] && ValeurAbsolue(startShape.y - endShape.y) > tolerence)
+        else if (moyenne - tolerence/4 < positionsX[0] && moyenne + tolerence/4 > positionsX[positionsX.Count - 1] && ValeurAbsolue(positions[0].y - positions[positions.Count - 1].y) > tolerence)
         {
             shape = ShapeType.Line;
+            Debug.Log("v");
+
         }
 
         if(shape != ShapeType.Line)
         {
+            supposeLineLength = 0;
             yHigh = positionsY[positionsY.Count - 1];
             yLow = positionsY[0];
             xHigh = positionsX[positionsX.Count - 1];
@@ -116,10 +124,30 @@ public class AILineShapeDetection : MonoBehaviour
                 supposeLineLength += cardinalsLengthMaths[i];
             }
             supposeLineLength -= tolerence;
-            if(ValeurAbsolue(supposeLineLength - lineLength) < tolerence)
+            for(int i = 0; i < cardinalsLengthMaths.Count; i++)
+            {
+                for(int j = 0; j < cardinalsLengthMaths.Count; j++)
+                {
+                    if(cardinalsLengthMaths[i] / cardinalsLengthMaths[j] != 1)
+                    {
+                        cardinalsCoef.Add(cardinalsLengthMaths[i] / cardinalsLengthMaths[j]);
+                    }
+                }
+            }
+            cardinalsCoef.Sort();
+            if (ValeurAbsolue(supposeLineLength - lineLength) < tolerence && cardinalsCoef[0] + tolerence/4 > 1 && cardinalsCoef[cardinalsCoef.Count-1] - tolerence/4 < 2)
             {
                 shape = ShapeType.Circle;
             }
+            
+        }
+        if(shape == ShapeType.None)
+        {
+            anim.SetBool("wrongShape",true);
+        }
+        else
+        {
+            anim.SetBool("goodShape", true);
         }
 
 
@@ -137,4 +165,5 @@ public enum ShapeType
     None,
     Circle,
     Line,
+
 }
