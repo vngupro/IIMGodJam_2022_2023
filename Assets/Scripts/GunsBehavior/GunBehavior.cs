@@ -16,7 +16,7 @@ public class GunBehavior : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && over)
+        if (collision.CompareTag("Player") && over)
         {
             PlayerGun playerGun = collision.GetComponent<PlayerGun>();
             if (Input.GetKey(KeyCode.Space))
