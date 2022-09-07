@@ -11,6 +11,19 @@ public class Shooting : MonoBehaviour
     public float bulletForce = 20f;
 
 
+    public static Shooting instance;
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.Log("Shooting");
+            return;
+        }
+        instance = this;
+    }
+
+
     private void Update()
     {
         if (Input.GetButtonDown("Fire1"))
