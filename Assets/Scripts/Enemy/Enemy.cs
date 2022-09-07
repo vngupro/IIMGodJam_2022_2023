@@ -27,9 +27,14 @@ public class Enemy : MonoBehaviour
 
     private Coroutine moveCoroutine = null;
     [SerializeField] private Direction direction = Direction.NONE;
-    private int lastRng = -1;
     //[SerializeField] List<Transform> context = new List<Transform>();
     [SerializeField] bool forceDirection = false;
+    private float maxHeight = 0.0f;
+    private float minHeight = 0.0f;
+    private float maxWidth = 0.0f;
+    private float minWidth = 0.0f;
+    private float halfWidth = 0.0f;
+    [SerializeField] Vector2 targetPosition = new Vector2(0.0f, 0.0f);
 
     public virtual void Awake()
     {
@@ -51,9 +56,15 @@ public class Enemy : MonoBehaviour
         damage = enemyAgent.damage;
 
         _collider = GetComponent<Collider2D>();
+
+
     }
     public virtual void Start()
     {
+        minHeight = GridManager.Instance.GetMinHeight() / 2;
+        maxHeight = GridManager.Instance.GetMaxHeight() / 2;
+        halfWidth = Camera.main.aspect * Camera.main.orthographicSize;
+        targetPosition = transform.position;
     }
 
     public virtual void Update()
@@ -73,12 +84,9 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            if(moveCoroutine == null)
-            {
-                moveCoroutine =  StartCoroutine(MoveRandom());
-            }
+            MoveRandom();
         }
-
+        
         GetNearbyObjects();
     }
 
@@ -89,40 +97,24 @@ public class Enemy : MonoBehaviour
 
     private void MoveToTarget()
     {
-        rb.MovePosition(rb.position + saveVelocity);
-        //transform.position += (Vector3)saveVelocity;
+        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, enemyAgent.speed * Time.fixedDeltaTime);
     }
 
-    IEnumerator MoveRandom()
+    public void MoveRandom()
     {
-        
-        int rng = Random.Range(0, 3);
-
-        while(lastRng == rng)
+        if(Vector2.Distance(targetPosition, transform.position) > distanceTolerance)
         {
-            rng = Random.Range(0, 3);
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, enemyAgent.speed * Time.fixedDeltaTime);
         }
-
-        Vector2 dir = new Vector2(0, 0);
-        
-        switch(rng)
+        else
         {
-            case 0: dir = new Vector2(1, 0); direction = Direction.RIGHT;  break;
-            case 1: dir = new Vector2(-1, 0); direction = Direction.LEFT; break;
-            case 2: dir = new Vector2(0, 1); direction = Direction.UP;  break;
-            case 3: dir = new Vector2(0, -1); direction = Direction.DOWN; break;
-        }
+            minWidth = Camera.main.transform.position.x - halfWidth;
+            maxWidth = Camera.main.transform.position.x + halfWidth;
 
-        float timer = timeBeforeChangeDirection;
-        while(timer > 0)
-        {
-            timer -= Time.deltaTime;
-            rb.MovePosition(rb.position + dir * enemyAgent.speed * Time.fixedDeltaTime);
-            yield return null;
+            float newPosX = Random.Range(minWidth, maxWidth);
+            float newPosY = Random.Range(minHeight, maxHeight);
+            targetPosition = new Vector2(newPosX, newPosY);
         }
-
-        moveCoroutine = null;
-        lastRng = rng;
     }
 
     public virtual void CalculateVelocity()
@@ -182,6 +174,12 @@ public class Enemy : MonoBehaviour
                 target = c.gameObject;
             }
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, enemyAgent.detectionRadius);
     }
 }
 

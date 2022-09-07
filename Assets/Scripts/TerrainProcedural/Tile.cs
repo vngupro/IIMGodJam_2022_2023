@@ -11,6 +11,8 @@ public class Tile : MonoBehaviour
     [SerializeField] private SpriteRenderer _renderer;
     [SerializeField] private Collider2D _collider;
     [SerializeField] public GameObject highlight;
+    public bool isSpawnPoint = false;
+    public bool isDecor = false;
 
     public void Init(bool isOffset)
     {
