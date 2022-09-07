@@ -813,6 +813,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   rb: {fileID: 1865585058}
+  playerCollider: {fileID: 1865585059}
 --- !u!50 &1865585058
 Rigidbody2D:
   serializedVersion: 4
@@ -932,6 +933,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
+  invincibilityTime: 2
   healthBar: {fileID: 603050485}
   isInvincible: 0
   graphics: {fileID: 1865585060}

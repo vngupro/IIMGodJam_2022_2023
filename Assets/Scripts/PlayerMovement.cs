@@ -10,6 +10,21 @@ public class PlayerMovement : MonoBehaviour
 
     Vector2 movement;
 
+    public CircleCollider2D playerCollider;
+
+
+    public static PlayerMovement instance;
+
+    private void Awake()
+    {
+        if(instance != null)
+        {
+            Debug.Log("PlayerMovement");
+            return;
+        }
+        instance = this;
+    }
+
     private void Update()
     {
         movement.x = Input.GetAxisRaw("Horizontal");
@@ -20,4 +35,5 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
     }
+
 }

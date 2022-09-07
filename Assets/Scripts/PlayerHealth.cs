@@ -36,9 +36,17 @@ public class PlayerHealth : MonoBehaviour
         {
             currentHealth -= damage;
             healthBar.SetHealth(currentHealth);
+
+            if (currentHealth <= 0)
+            {
+                Die();
+                return;
+            }
+
             isInvincible = true;
             StartCoroutine(InvincibilityFlash());
             StartCoroutine(InvincibilityDelay());
+
 
         }
         
@@ -58,6 +66,15 @@ public class PlayerHealth : MonoBehaviour
     {
         yield return new WaitForSeconds(invincibilityTime);
         isInvincible=false;
+    }
+
+    public void Die()
+    {
+        Debug.Log("IsDead");
+        PlayerMovement.instance.enabled = false;
+        PlayerMovement.instance.rb.bodyType = RigidbodyType2D.Kinematic;
+        PlayerMovement.instance.playerCollider.enabled = false;
+        
     }
     
 }
