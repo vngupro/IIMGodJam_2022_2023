@@ -10,6 +10,7 @@ public class EnemyAgent : ScriptableObject
     public float maxDamage = 20.0f;
     public float speed = 10.0f;
     public float maxSpeed = 20.0f;
+    public AnimationCurve speedCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
     public float rotationSpeed = 100.0f;
     public float detectionRadius = 10.0f;
 

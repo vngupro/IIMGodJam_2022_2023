@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
@@ -8,6 +10,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public EnemyAgent enemyAgent;
+    public float timeBeforeChangeDirection = 3.0f;
 
     [Header("____________DEBUG___________")]
     public float damage = 0.0f;
@@ -17,7 +20,14 @@ public class Enemy : MonoBehaviour
 
     public EnemyHealth health;
     public SpriteRenderer spriteRenderer;
+    public Rigidbody2D rb;
+    public Collider2D _collider;
     public Vector2 saveVelocity; // save Direction
+
+    private Coroutine moveCoroutine = null;
+    [SerializeField] private Direction direction = Direction.NONE;
+    private int lastRng = -1;
+    [SerializeField] List<Transform> context = new List<Transform>();
 
     public virtual void Awake()
     {
@@ -33,8 +43,12 @@ public class Enemy : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = enemyAgent.sprite;
 
+        rb = GetComponent<Rigidbody2D>();
+
         speed = new Vector2(enemyAgent.speed, enemyAgent.speed) * speedMultiplier;
         damage = enemyAgent.damage;
+
+        _collider = GetComponent<Collider2D>();
     }
     public virtual void Start()
     {
@@ -48,8 +62,13 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            MoveRandom();
+            if(moveCoroutine == null)
+            {
+                moveCoroutine =  StartCoroutine(MoveRandom());
+            }
         }
+
+        GetNearbyObjects();
     }
 
     public void SetTarget(GameObject value)
@@ -57,14 +76,41 @@ public class Enemy : MonoBehaviour
         target = value;
     }
 
-    public void MoveToTarget()
+    private void MoveToTarget()
     {
         transform.position += (Vector3)saveVelocity;
     }
 
-    public void MoveRandom()
+    IEnumerator MoveRandom()
     {
-        transform.position = new Vector2(transform.position.x + 1.0f, transform.position.y + 1.0f);
+        
+        int rng = Random.Range(0, 3);
+
+        while(lastRng == rng)
+        {
+            rng = Random.Range(0, 3);
+        }
+
+        Vector2 dir = new Vector2(0, 0);
+        
+        switch(rng)
+        {
+            case 0: dir = new Vector2(1, 0); direction = Direction.RIGHT;  break;
+            case 1: dir = new Vector2(-1, 0); direction = Direction.LEFT; break;
+            case 2: dir = new Vector2(0, 1); direction = Direction.UP;  break;
+            case 3: dir = new Vector2(0, -1); direction = Direction.DOWN; break;
+        }
+
+        float timer = timeBeforeChangeDirection;
+        while(timer > 0)
+        {
+            timer -= Time.deltaTime;
+            rb.MovePosition(rb.position + dir * enemyAgent.speed * Time.fixedDeltaTime);
+            yield return null;
+        }
+
+        moveCoroutine = null;
+        lastRng = rng;
     }
 
     public virtual void CalculateVelocity()
@@ -87,7 +133,7 @@ public class Enemy : MonoBehaviour
             //SoundManager.Instance.PlaySound("Enemy_TakeDamage");
         }
 
-        if(other.gameObject.tag.Contains("Weapons"))
+        if(other.gameObject.tag.Contains("PlayerWeapon"))
         {
             //float damage = other.gameObject.GetComponent<DamageSystem>().damage;
             //health.TakeDamage(damage);
@@ -112,4 +158,26 @@ public class Enemy : MonoBehaviour
     {
         // Feedback | VFX | Sound
     }
+
+    private List<Transform> GetNearbyObjects()
+    {
+        Collider2D[] contextColliders = Physics2D.OverlapCircleAll(transform.position, enemyAgent.detectionRadius);
+        foreach (Collider2D c in contextColliders)
+        {
+            if (c != _collider)
+            {
+                context.Add(c.transform);
+            }
+        }
+        return context;
+    }
+}
+
+public enum Direction
+{
+    NONE,
+    UP,
+    DOWN,
+    LEFT,
+    RIGHT
 }

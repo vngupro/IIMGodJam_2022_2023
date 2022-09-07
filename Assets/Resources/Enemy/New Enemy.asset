@@ -15,11 +15,35 @@ MonoBehaviour:
   health: 1
   damage: 10
   maxDamage: 20
-  speed: 10
+  speed: 1
   maxSpeed: 20
+  speedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   rotationSpeed: 100
   detectionRadius: 10
-  sprite: {fileID: 0}
+  sprite: {fileID: -2413806693520163455, guid: 7fd099687a2fc614498b6f45820e368f, type: 3}
   spriteAttack: {fileID: 0}
   spriteTakeDamage: {fileID: 0}
   spriteOnDeath: {fileID: 0}
