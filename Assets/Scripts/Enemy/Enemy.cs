@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
 {
     public EnemyAgent enemyAgent;
     public float timeBeforeChangeDirection = 3.0f;
+    public float distanceTolerance = 0.2f;                  // anti trembling mouvement
 
     [Header("____________DEBUG___________")]
     public float damage = 0.0f;
@@ -27,7 +28,8 @@ public class Enemy : MonoBehaviour
     private Coroutine moveCoroutine = null;
     [SerializeField] private Direction direction = Direction.NONE;
     private int lastRng = -1;
-    [SerializeField] List<Transform> context = new List<Transform>();
+    //[SerializeField] List<Transform> context = new List<Transform>();
+    [SerializeField] bool forceDirection = false;
 
     public virtual void Awake()
     {
@@ -58,7 +60,16 @@ public class Enemy : MonoBehaviour
     {
         if(target != null)
         {
-            MoveToTarget();
+            if(Vector2.Distance(target.transform.position, transform.position) > distanceTolerance)
+            {
+                CalculateVelocity();
+                MoveToTarget();
+            }
+        }
+        else if (forceDirection)
+        {
+            rb.MovePosition(rb.position + new Vector2(1, 0) * enemyAgent.speed * Time.fixedDeltaTime);
+            direction = Direction.RIGHT;
         }
         else
         {
@@ -78,7 +89,8 @@ public class Enemy : MonoBehaviour
 
     private void MoveToTarget()
     {
-        transform.position += (Vector3)saveVelocity;
+        rb.MovePosition(rb.position + saveVelocity);
+        //transform.position += (Vector3)saveVelocity;
     }
 
     IEnumerator MoveRandom()
@@ -159,17 +171,17 @@ public class Enemy : MonoBehaviour
         // Feedback | VFX | Sound
     }
 
-    private List<Transform> GetNearbyObjects()
+    private void GetNearbyObjects()
     {
+        //context = new List<Transform>();
         Collider2D[] contextColliders = Physics2D.OverlapCircleAll(transform.position, enemyAgent.detectionRadius);
         foreach (Collider2D c in contextColliders)
         {
-            if (c != _collider)
+            if (c != _collider && c.gameObject.CompareTag("Player") && target == null)
             {
-                context.Add(c.transform);
+                target = c.gameObject;
             }
         }
-        return context;
     }
 }
 
