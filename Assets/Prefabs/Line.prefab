@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59c6d32f2e8824647aa44830b0123946, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delayBeforeDeath: 1
+  delayBeforeDeath: 6
   readyToDie: 0
 --- !u!114 &4037198054017384171
 MonoBehaviour:
@@ -157,8 +157,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03f085b3fcd214459a4e20f333c6259, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shape: 
+  shape: 0
   positions: []
   coef: []
   tolerence: 1
+  lineLength: 0
+  supposeLineLength: 0
   positionsX: []
+  positionsY: []
+  cardialsPoints: []
+  cardinalsLength: []
+  cardinalsLengthMaths: []
+  yHigh: 0
+  yLow: 0
+  xHigh: 0
+  xLow: 0
+  yHighList: []
+  yLowList: []
+  xHighList: []
+  xLowList: []
