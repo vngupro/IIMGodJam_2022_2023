@@ -6,9 +6,12 @@ using UnityEngine;
 public class GunInfo : ScriptableObject
 {
     public string Name;
-    public int type; //0 = Corp à corp 1 = FireGun
+    public int Type; //0 = FireGun 1 = MachineGun
     public int BulletsLeft;
     public int MaxBullet;
     public int Damage;
+    public int Speed;
+    public float SpeedBetweenShot;
+    
 
 }
