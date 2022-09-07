@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
 
     public CircleCollider2D playerCollider;
 
+    public GameObject player;
+
 
     public static PlayerMovement instance;
 
@@ -29,11 +31,39 @@ public class PlayerMovement : MonoBehaviour
     {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
+
+        if(movement.x < 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, -180);
+        }
+        else if(movement.x > 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+
+        }
+        else if (movement.y > 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 90);
+
+        }
+        else if (movement.y < 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, -90);
+
+        }
+
+
+
     }
 
     private void FixedUpdate()
     {
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        
     }
+
+
+
+    
 
 }
