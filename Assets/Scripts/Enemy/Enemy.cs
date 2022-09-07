@@ -101,7 +101,7 @@ public class Enemy : MonoBehaviour
     {
         health.TakeDamage(value);
 
-        if(health.currnetHealth < 0)
+        if(health.currentHealth < 0)
         {
             // Coroutine ? or OnDestroy ?
             Destroy(gameObject);
