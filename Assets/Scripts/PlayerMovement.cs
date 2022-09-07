@@ -13,9 +13,15 @@ public class PlayerMovement : MonoBehaviour
     public CircleCollider2D playerCollider;
 
     public GameObject player;
-
-
     public static PlayerMovement instance;
+
+    
+
+  
+    
+
+
+
 
     private void Awake()
     {
@@ -52,6 +58,7 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
+        
 
 
     }
@@ -59,6 +66,10 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+
+
+
+       
         
     }
 
