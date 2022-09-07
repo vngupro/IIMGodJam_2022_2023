@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class AILineShapeDetection : MonoBehaviour
 {
     public ShapeType shape = ShapeType.None;
     private LineRenderer line;
-    [SerializeField] private List<Vector2> positions;
+    public List<Vector2> positions;
     [SerializeField] private List<float> coef;
     [SerializeField] private float tolerence;
 
@@ -138,8 +139,17 @@ public class AILineShapeDetection : MonoBehaviour
             if (ValeurAbsolue(supposeLineLength - lineLength) < tolerence && cardinalsCoef[0] + tolerence/4 > 1 && cardinalsCoef[cardinalsCoef.Count-1] - tolerence/4 < 2)
             {
                 shape = ShapeType.Circle;
+                GameObject.FindGameObjectWithTag("MainCamera").GetComponent<cameraShake>().type = 2;
+                GameObject.FindGameObjectWithTag("MainCamera").GetComponent<cameraShake>().start = true;
             }
             
+        }
+        else// = trait
+        {
+            //shake screen
+
+            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<cameraShake>().type = 1;
+            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<cameraShake>().start = true;
         }
         if(shape == ShapeType.None)
         {
