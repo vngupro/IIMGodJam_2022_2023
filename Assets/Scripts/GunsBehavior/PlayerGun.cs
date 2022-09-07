@@ -7,7 +7,6 @@ public class PlayerGun : MonoBehaviour
     public int maxGun;
     public int currentSlot;
     public GunInfo[] guns;
-    public GameObject gunPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -38,10 +37,7 @@ public class PlayerGun : MonoBehaviour
 
     public void Drop()
     {
-        gunPrefab.transform.position = transform.position;
-        gunPrefab.GetComponent<GunBehavior>().gunData = guns[currentSlot];
-        gunPrefab.GetComponent<GunBehavior>().over = false;
+        GameObject.Find("GunManager").GetComponent<AllGuns>().Spawn(guns[currentSlot], transform.position);
         guns[currentSlot] = null;
-        Instantiate(gunPrefab);
     }
 }

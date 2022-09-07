@@ -7,15 +7,6 @@ public class GunBehavior : MonoBehaviour
     public GunInfo gunData;
     public float pickCoolDown;
     [HideInInspector] public bool over;
-    private void Start()
-    {
-        //Debug.Log(gunData.name);
-        if(pickCoolDown == 0f)
-        {
-            pickCoolDown = 2f;
-        }
-    }
-
     private void Update()
     {
         if(!over)

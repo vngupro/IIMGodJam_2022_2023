@@ -10,4 +10,5 @@ public class GunInfo : ScriptableObject
     public int BulletsLeft;
     public int MaxBullet;
     public int Damage;
+
 }
