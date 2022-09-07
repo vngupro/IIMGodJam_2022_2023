@@ -25,8 +25,6 @@ public class Enemy : MonoBehaviour
     public Collider2D _collider;
     public Vector2 saveVelocity; // save Direction
 
-    private Coroutine moveCoroutine = null;
-    [SerializeField] private Direction direction = Direction.NONE;
     //[SerializeField] List<Transform> context = new List<Transform>();
     [SerializeField] bool forceDirection = false;
     private float maxHeight = 0.0f;
@@ -80,7 +78,6 @@ public class Enemy : MonoBehaviour
         else if (forceDirection)
         {
             rb.MovePosition(rb.position + new Vector2(1, 0) * enemyAgent.speed * Time.fixedDeltaTime);
-            direction = Direction.RIGHT;
         }
         else
         {

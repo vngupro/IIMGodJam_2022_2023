@@ -4,25 +4,25 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
+    public float timeBeforeSpawn = 5.0f;
     public List<Tile> SpawnPoint = new List<Tile>();
     public List<Tile> DecorPoint = new List<Tile>();
 
-    public float timer = 0.0f;
+    public float chrono = 0.0f;
 
     private void Start()
     {
         SpawnPoint = GridManager.Instance.borderTiles;
-        timer = 5.0f;
+        chrono = timeBeforeSpawn;
     }
 
     private void FixedUpdate()
     {
-        timer -= Time.fixedDeltaTime;
-        if (timer <= 0.0f)
+        chrono -= Time.fixedDeltaTime;
+        if (chrono < 0.0f)
         {
-
             SpawnEnemy();
-            timer = 5.0f;
+            chrono = timeBeforeSpawn;
         }
     }
     public void SpawnEnemy()

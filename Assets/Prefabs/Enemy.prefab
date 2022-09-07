@@ -74,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 259909715
+  m_SortingLayerID: 1248286433
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: 7fd099687a2fc614498b6f45820e368f, type: 3}
@@ -133,7 +133,6 @@ MonoBehaviour:
   rb: {fileID: 0}
   _collider: {fileID: 0}
   saveVelocity: {x: 0, y: 0}
-  direction: 0
   forceDirection: 0
   targetPosition: {x: 0, y: 0}
 --- !u!114 &1830122765323947778
