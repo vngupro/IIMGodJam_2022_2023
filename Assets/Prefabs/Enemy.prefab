@@ -134,6 +134,13 @@ MonoBehaviour:
   _collider: {fileID: 0}
   saveVelocity: {x: 0, y: 0}
   forceDirection: 0
+  maxHeight: 0
+  minHeight: 0
+  maxWidth: 0
+  minWidth: 0
+  halfHeight: 0
+  halfWidth: 0
+  offset: 1
   targetPosition: {x: 0, y: 0}
 --- !u!114 &1830122765323947778
 MonoBehaviour:
