@@ -14,6 +14,12 @@ public class PlayerHealth : MonoBehaviour
 
     public SpriteRenderer graphics;
 
+    public GameObject deathSceneUI;
+
+
+
+
+
 
     void Start()
     {
@@ -73,8 +79,13 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("IsDead");
         PlayerMovement.instance.enabled = false;
         PlayerMovement.instance.rb.bodyType = RigidbodyType2D.Kinematic;
-        PlayerMovement.instance.playerCollider.enabled = false;
-        
+        PlayerMovement.instance.playerCollider.enabled = false;        
+        deathSceneUI.SetActive(true);
+        Shooting.instance.enabled = false;
+
+        Enemy.instance.enabled = false;
+
+
     }
-    
+
 }
