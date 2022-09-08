@@ -11,9 +11,9 @@ public class GridManager : MonoBehaviour
     [SerializeField] private int rows = 32;
     [SerializeField] private int columns = 24;
     [SerializeField] private Tile tilePrefab;
-    [SerializeField] private Transform cam;
 
     [Header("________ DEBUG ________")]
+    [SerializeField] private Transform cam;
     public Tile[,] grid;
     public List<Tile> borderTiles = new List<Tile>();
     //private PixelPerfectCamera pixelPerfectCam;
@@ -62,11 +62,9 @@ public class GridManager : MonoBehaviour
             }
         }
 
-        // Center Grid to cam
-        // 0.5f = half of asset size
-        // decomment and comment x formula to center grid to left
-        const float halfAssetUnit = 0.5f;
-        transform.position = new Vector3(transform.position.x - /*pixelPerfectCam.refResolutionX / pixelPerfectCam.assetsPPU / 2 + halfAssetUnit - 1*/ rows / 2 + halfAssetUnit, transform.position.y - columns / 2 + halfAssetUnit);
+        // Center Grid to upper level
+        transform.position = new Vector3(transform.position.x - rows/2 + 0.5f, transform.position.y + 0.5f, transform.position.z);
+        //transform.position = new Vector3(transform.position.x - /*pixelPerfectCam.refResolutionX / pixelPerfectCam.assetsPPU / 2 + halfAssetUnit - 1*/ rows / 2 + halfAssetUnit, transform.position.y - columns / 2 + halfAssetUnit);
     }
 
     public Tile GetTileAtPosition(Vector2 pos /*int tileId*/)
