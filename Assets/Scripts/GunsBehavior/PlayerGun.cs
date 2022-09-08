@@ -18,8 +18,9 @@ public class PlayerGun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R))
         {
+            
             if(currentSlot >= maxGun - 1)
             {
                 currentSlot = 0;
@@ -32,6 +33,11 @@ public class PlayerGun : MonoBehaviour
         if(guns[currentSlot] != null && Input.GetKeyDown(KeyCode.E))
         {
             Drop();
+        }
+
+        for (int i = 0; i < maxGun; i++)
+        {
+            GameObject.Find("GunManager").GetComponent<AllGuns>().NewItem(guns[i], i);
         }
     }
 
