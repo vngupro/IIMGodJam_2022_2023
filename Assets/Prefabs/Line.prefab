@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8121254460316476445}
   - component: {fileID: 4603450082420096138}
-  - component: {fileID: 1888544103036014112}
   - component: {fileID: 4037198054017384171}
   - component: {fileID: 211961860164144890}
   - component: {fileID: 6649422957707147558}
+  - component: {fileID: 2054588861594567247}
   m_Layer: 0
   m_Name: Line
   m_TagString: Untagged
@@ -151,20 +151,6 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!114 &1888544103036014112
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3902792590554828875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59c6d32f2e8824647aa44830b0123946, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  delayBeforeDeath: 1
-  readyToDie: 0
 --- !u!114 &4037198054017384171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,6 +167,8 @@ MonoBehaviour:
   positions: []
   coef: []
   tolerence: 2
+  centre: {x: 0, y: 0}
+  centreCardinal: {x: 0, y: 0}
   lineLength: 0
   supposeLineLength: 0
   positionsX: []
@@ -232,3 +220,17 @@ MonoBehaviour:
   particles: {fileID: 4793123133244430876, guid: efdf6b2475161ee4988f8e3e6fa49b06, type: 3}
   particlesPosition: {x: 0, y: 0}
   particlesState: 1
+--- !u!114 &2054588861594567247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3902792590554828875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 492bc1e3db706e1489614270f2ec2f0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delayBeforeDeath: 1
+  readyToDie: 0

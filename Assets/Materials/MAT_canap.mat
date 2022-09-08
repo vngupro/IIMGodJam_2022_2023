@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MaterialPalette
+  m_Name: MAT_canap
   m_Shader: {fileID: -6465566751694194690, guid: 169e6f60480669a498ac3782d6aa79c0, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []

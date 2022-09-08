@@ -8,6 +8,7 @@ public class cameraShake : MonoBehaviour
     public bool start = false;
     public AnimationCurve animationCurveLine;
     public AnimationCurve animationCurveCircle;
+    public AnimationCurve animationCurvePoint;
     public int type;
     private void Update()
     {
@@ -36,7 +37,11 @@ public class cameraShake : MonoBehaviour
                 float strength = animationCurveLine.Evaluate(elapsedTime / duration);
                 transform.position = startPosition + Random.insideUnitSphere * strength;
             }
-            
+            if (type == 0)
+            {
+                float strength = animationCurvePoint.Evaluate(elapsedTime / duration);
+                transform.position = startPosition + Random.insideUnitSphere * strength;
+            }
             yield return null;
         }
         transform.position = startPosition;
