@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Gun
   - Line
+  - ScoreManager
   layers:
   - Default
   - TransparentFX
