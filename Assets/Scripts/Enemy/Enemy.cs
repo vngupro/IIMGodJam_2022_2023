@@ -27,13 +27,16 @@ public class Enemy : MonoBehaviour
 
     //[SerializeField] List<Transform> context = new List<Transform>();
     [SerializeField] bool forceDirection = false;
-    private float maxHeight = 0.0f;
-    private float minHeight = 0.0f;
-    private float maxWidth = 0.0f;
-    private float minWidth = 0.0f;
-    private float halfWidth = 0.0f;
-    [SerializeField] Vector2 targetPosition = new Vector2(0.0f, 0.0f);
+    [SerializeField] private float maxHeight = 0.0f;
+    [SerializeField] private float minHeight = 0.0f;
+    [SerializeField] private float maxWidth = 0.0f;
+    [SerializeField] private float minWidth = 0.0f;
+    [SerializeField] private float halfHeight = 0.0f;
+    [SerializeField] private float halfWidth = 0.0f;
+    public float offset = 0.5f;
 
+    [SerializeField] Vector2 targetPosition = new Vector2(0.0f, 0.0f);
+    private Camera cam;
     public virtual void Awake()
     {
         if(enemyAgent == null)
@@ -55,13 +58,16 @@ public class Enemy : MonoBehaviour
 
         _collider = GetComponent<Collider2D>();
 
-
+        cam = Camera.main;
+        halfHeight = cam.orthographicSize;
+        halfWidth = halfHeight * cam.aspect;
+        maxHeight = cam.transform.position.y + halfHeight - offset;
+        minHeight = cam.transform.position.y + offset;
+        maxWidth = cam.transform.position.x + halfWidth - offset;
+        maxWidth = cam.transform.position.x - halfWidth + offset;
     }
     public virtual void Start()
     {
-        minHeight = GridManager.Instance.GetMinHeight() / 2;
-        maxHeight = GridManager.Instance.GetMaxHeight() / 2;
-        halfWidth = Camera.main.aspect * Camera.main.orthographicSize;
         targetPosition = transform.position;
     }
 
@@ -105,9 +111,10 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            minWidth = Camera.main.transform.position.x - halfWidth;
-            maxWidth = Camera.main.transform.position.x + halfWidth;
-
+            maxHeight = cam.transform.position.y + halfHeight - offset;
+            minHeight = cam.transform.position.y + offset;
+            minWidth = cam.transform.position.x + halfWidth - offset;
+            maxWidth = cam.transform.position.x - halfWidth + offset;
             float newPosX = Random.Range(minWidth, maxWidth);
             float newPosY = Random.Range(minHeight, maxHeight);
             targetPosition = new Vector2(newPosX, newPosY);
