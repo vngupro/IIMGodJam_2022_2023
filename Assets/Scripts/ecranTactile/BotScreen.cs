@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class BotScreen : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class BotScreen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        Pen pen = Pen.current;
         Transform mainCamera = GameObject.Find("Main Camera").GetComponent<Transform>();
         mousePosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
         lastPosition = new Vector3(mousePosition[0] / pixelByUnits + mainCamera.transform.position.x - offSet.x, mousePosition[1] / pixelByUnits + mainCamera.transform.position.y - offSet.y, -1);
@@ -64,3 +65,4 @@ public class BotScreen : MonoBehaviour
 
     }
 }
+
