@@ -4,30 +4,29 @@ using UnityEngine;
 
 public class Shooting : MonoBehaviour
 {
-    private PlayerGun inventory;
     public Transform firePoint;
     public GameObject bulletPrefab;
     private bool CanFire = true;
 
-    private void Start()
-    {
-        inventory = GetComponent<PlayerGun>();
-    }
-
+    public string son = "";
     private void Update()
     {
-        if (inventory.guns[inventory.currentSlot] != null)
+        if(Input.GetKey(KeyCode.T) && CanFire)
         {
-            if(inventory.guns[inventory.currentSlot].Type == 0)
+            InventoryManager iv = GameObject.Find("InventoryManager").GetComponent<InventoryManager>();
+            if(iv.guns[iv.currentSlot] != null)
             {
-                NormalGun(inventory.guns[inventory.currentSlot]);
-            }
-            if(inventory.guns[inventory.currentSlot].Type == 1)
-            {
-                MachineGun(inventory.guns[inventory.currentSlot]);
+                GunInfo gunInfo = iv.guns[iv.currentSlot].GetComponent<GunInfo>();
+                if (gunInfo.CanShoot())
+                {
+                    CanFire = false;
+                    Shoot(gunInfo.Speed, gunInfo.Damage);
+                    StartCoroutine(FireSpeed(gunInfo.SpeedBetweenShot));
+                }
             }
         }
     }
+
 
     void Shoot(float speed,int damage)
     {
@@ -35,35 +34,14 @@ public class Shooting : MonoBehaviour
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.AddForce(firePoint.up * speed, ForceMode2D.Impulse);
+
+        SoundManager.Instance.PlaySound(son);
     }
 
-    void NormalGun(GunInfo guninfo)
+    IEnumerator FireSpeed(float seconds)
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && CanFire && guninfo.BulletsLeft <= guninfo.MaxBullet)
-        {
-            Shoot(guninfo.Speed, guninfo.Damage);
-            guninfo.BulletsLeft--;
-            CanFire = false;
-            Invoke("ShootCoolDown", guninfo.SpeedBetweenShot);
-        }
-    }
-
-    void MachineGun(GunInfo guninfo)
-    {
-        if (Input.GetKey(KeyCode.Mouse0) && CanFire && guninfo.BulletsLeft <= guninfo.MaxBullet)
-        {
-            Shoot(guninfo.Speed, guninfo.Damage);
-            guninfo.BulletsLeft--;
-            CanFire = false;
-            Invoke("ShootCoolDown", guninfo.SpeedBetweenShot);
-        }
-    }
-
-    private void ShootCoolDown()
-    {
+        yield return new WaitForSeconds(seconds);
         CanFire = true;
     }
 
-
-    
 }

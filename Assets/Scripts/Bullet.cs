@@ -5,11 +5,11 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public int damage;
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Invoke("KillBullet", 0.2f);
-    }
 
+    private void Awake()
+    {
+        Invoke("KillBullet", 5f);
+    }
     private void KillBullet()
     {
         Destroy(gameObject);
