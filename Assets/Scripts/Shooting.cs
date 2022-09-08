@@ -9,6 +9,19 @@ public class Shooting : MonoBehaviour
     private bool CanFire = true;
 
     public string son = "";
+
+    public static Shooting instance;
+
+    private void Awake()
+    {
+        if(instance != null)
+        {
+            Debug.Log("Shooting");
+            return;
+        }
+        instance = this;
+    }
+
     private void Update()
     {
         if(Input.GetKey(KeyCode.T) && CanFire)

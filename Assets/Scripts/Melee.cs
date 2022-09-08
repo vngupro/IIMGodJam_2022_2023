@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class Melee : MonoBehaviour
 {
+    public float Damage = 1f;
     private bool CanAttack = false;
     private GameObject enemy;
     private void Update()
     {
         if(CanAttack && Input.GetKeyDown(KeyCode.F))
         {
-            //gameObject.GetComponent<>().Damage
+            enemy.GetComponent<EnemyHealth>().TakeDamage(Damage);
         }
     }
 
