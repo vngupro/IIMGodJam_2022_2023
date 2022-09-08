@@ -6,6 +6,8 @@ using UnityEngine.Experimental.Rendering.Universal;
 //[ExecuteInEditMode]
 public class GridManager : MonoBehaviour
 {
+    public LayerMask unwalkableMask;
+    public GameObject player;
     [SerializeField] private int rows = 32;
     [SerializeField] private int columns = 24;
     [SerializeField] private Tile tilePrefab;
@@ -14,7 +16,7 @@ public class GridManager : MonoBehaviour
     [Header("________ DEBUG ________")]
     public Tile[,] grid;
     public List<Tile> borderTiles = new List<Tile>();
-    private PixelPerfectCamera pixelPerfectCam;
+    //private PixelPerfectCamera pixelPerfectCam;
 
     public static GridManager Instance { get; private set; }
     private void Awake()
@@ -24,7 +26,7 @@ public class GridManager : MonoBehaviour
         {
             cam = Camera.main.transform;
         }
-        pixelPerfectCam = cam.GetComponent<PixelPerfectCamera>();
+        //pixelPerfectCam = cam.GetComponent<PixelPerfectCamera>();
 
         GenerateGrid();
     }
@@ -62,8 +64,9 @@ public class GridManager : MonoBehaviour
 
         // Center Grid to cam
         // 0.5f = half of asset size
+        // decomment and comment x formula to center grid to left
         const float halfAssetUnit = 0.5f;
-        transform.position = new Vector3(transform.position.x - pixelPerfectCam.refResolutionX / pixelPerfectCam.assetsPPU / 2 + halfAssetUnit, transform.position.y - columns / 2 + halfAssetUnit);
+        transform.position = new Vector3(transform.position.x - /*pixelPerfectCam.refResolutionX / pixelPerfectCam.assetsPPU / 2 + halfAssetUnit - 1*/ rows / 2 + halfAssetUnit, transform.position.y - columns / 2 + halfAssetUnit);
     }
 
     public Tile GetTileAtPosition(Vector2 pos /*int tileId*/)

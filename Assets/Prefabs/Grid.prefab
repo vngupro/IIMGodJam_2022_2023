@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8788014092819056801}
   - component: {fileID: 8788014092819056800}
   - component: {fileID: 8788014092819056806}
-  - component: {fileID: 8428459460656884724}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -46,10 +45,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 931c2e6526f647d478b1f1c3bb84a94e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unwalkableMask:
+    serializedVersion: 2
+    m_Bits: 0
+  player: {fileID: 0}
   rows: 64
   columns: 24
   tilePrefab: {fileID: 2278920957231966780, guid: 39fd0ed862219654ba0c919f475d605d, type: 3}
   cam: {fileID: 0}
+  borderTiles: []
 --- !u!156049354 &8788014092819056806
 Grid:
   m_ObjectHideFlags: 0
@@ -62,15 +66,3 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
---- !u!114 &8428459460656884724
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8788014092819056803}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9530a7e413459a24ab2ba299e4645a46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
