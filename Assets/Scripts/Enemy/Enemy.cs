@@ -34,6 +34,12 @@ public class Enemy : MonoBehaviour
     private float halfWidth = 0.0f;
     [SerializeField] Vector2 targetPosition = new Vector2(0.0f, 0.0f);
 
+
+
+    public event System.Action OnDeath;
+
+
+
     public virtual void Awake()
     {
         if(enemyAgent == null)
@@ -150,6 +156,10 @@ public class Enemy : MonoBehaviour
 
         if(health.currentHealth < 0)
         {
+            if(OnDeath!= null)
+            {
+                OnDeath();
+            }
             // Coroutine ? or OnDestroy ?
             Destroy(gameObject);
         }
