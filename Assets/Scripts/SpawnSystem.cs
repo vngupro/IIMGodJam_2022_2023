@@ -32,10 +32,10 @@ public class SpawnSystem : MonoBehaviour
             enemiesRemainingToSpawn--;
             nextSpawnTime = Time.time + currentWave.timeBetweenSpawns;
 
-            //Enemy spawnEnemy = Instantiate(enemy, Vector3.zero, Quaternion.identity) as Enemy;
+           
             Enemy spawnEnemy = Instantiate(enemy, spawnPoint.position, Quaternion.identity) as Enemy;
 
-            //GameObject spawnEnemy = Instantiate(enemy, spawnPoint.position, spawnPoint.rotation);
+            
 
             spawnEnemy.OnDeath += OnEnemyDeath;
 

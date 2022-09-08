@@ -10,6 +10,8 @@ public class PauseManager : MonoBehaviour
 
     public GameObject pauseMenuUI;
 
+    Enemy enemy;
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -28,6 +30,7 @@ public class PauseManager : MonoBehaviour
     void Paused()
     {
         PlayerMovement.instance.enabled = false;
+        
         Shooting.instance.enabled = false;
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0;
@@ -37,6 +40,8 @@ public class PauseManager : MonoBehaviour
     public void Resume()
     {
         PlayerMovement.instance.enabled = true;
+        
+
         Shooting.instance.enabled = true;
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1;
