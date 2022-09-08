@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class PauseManager : MonoBehaviour
@@ -10,7 +11,9 @@ public class PauseManager : MonoBehaviour
 
     public GameObject pauseMenuUI;
 
-    Enemy enemy;
+    public PlayerHealth pH;
+
+
 
     void Update()
     {
@@ -37,15 +40,21 @@ public class PauseManager : MonoBehaviour
         isPaused = true;
     }
 
+
+    public void Retry()
+    {
+        SceneManager.LoadScene(0);
+        pH.deathSceneUI.SetActive(false);
+    }
     public void Resume()
     {
-        PlayerMovement.instance.enabled = true;
-        
+        PlayerMovement.instance.enabled = true;      
 
         Shooting.instance.enabled = true;
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1;
         isPaused = false;
+        
 
     }
 

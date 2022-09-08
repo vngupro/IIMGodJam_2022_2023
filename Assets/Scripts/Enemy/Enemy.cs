@@ -40,6 +40,16 @@ public class Enemy : MonoBehaviour
 
 
 
+
+    public static Enemy instance; //test
+
+
+
+
+
+
+
+
     public virtual void Awake()
     {
         if(enemyAgent == null)
@@ -60,6 +70,17 @@ public class Enemy : MonoBehaviour
         damage = enemyAgent.damage;
 
         _collider = GetComponent<Collider2D>();
+
+
+
+        if (instance != null)            //test
+        {
+            Debug.Log("Enemy");
+            return;
+        }
+        instance = this;
+
+
 
 
     }
