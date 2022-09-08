@@ -10,6 +10,10 @@ public class Ulimate : MonoBehaviour
     [SerializeField] private float croissanceDifficulty;
     private bool ultimateMustache;
 
+    [SerializeField] private ParticleSystem ultParticles;
+    [SerializeField] private float buffTime;
+    public bool underUlt;
+
     private void Update()
     {
         score = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<Score>().score;
@@ -23,7 +27,9 @@ public class Ulimate : MonoBehaviour
             ultimateMustache = false;
             scoreLost += score;
             score = 0;
-            scoreMinUlt += (int)(scoreMinUlt /croissanceDifficulty);
+            scoreMinUlt += (int)(scoreMinUlt * croissanceDifficulty/100);
+            Instantiate(ultParticles, transform.position, Quaternion.identity);
+            underUlt = true;
         }
     }
 }
