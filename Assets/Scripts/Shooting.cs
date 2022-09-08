@@ -8,8 +8,6 @@ public class Shooting : MonoBehaviour
     public GameObject bulletPrefab;
     private bool CanFire = true;
 
-    public string son = "";
-
     public static Shooting instance;
 
     private void Awake()
@@ -48,7 +46,7 @@ public class Shooting : MonoBehaviour
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.AddForce(firePoint.up * speed, ForceMode2D.Impulse);
 
-        SoundManager.Instance.PlaySound(son);
+        SoundManager.Instance.PlaySound("Shoot");
     }
 
     IEnumerator FireSpeed(float seconds)

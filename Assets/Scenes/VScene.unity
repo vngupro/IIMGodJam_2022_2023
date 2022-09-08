@@ -933,7 +933,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firePoint: {fileID: 983275248}
   bulletPrefab: {fileID: 587487372775277040, guid: 4040c97aa94ad7f4484a2f14f2e1f24e, type: 3}
-  son: 
 --- !u!114 &1137555316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -952,6 +951,7 @@ MonoBehaviour:
   healthBar: {fileID: 261976685}
   isInvincible: 0
   graphics: {fileID: 1137555320}
+  deathSceneUI: {fileID: 0}
 --- !u!114 &1137555317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1277,7 +1277,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeDuration: 2
   sounds:
-  - name: cocorico
+  - name: Melee
     volume: 1
     pitch: 1
     spatialBlend: 0
@@ -1287,9 +1287,10 @@ MonoBehaviour:
     loop: 0
     playOnAwake: 0
     clips:
-    - {fileID: 8300000, guid: feec0ac8df60cfa428af170e709e6f5e, type: 3}
+    - {fileID: 8300000, guid: 411041dddda69104e92b2e1f18497cf2, type: 3}
+    - {fileID: 8300000, guid: 0e11d3aedde636f46ab2d7ebfc22a6e7, type: 3}
     source: {fileID: 0}
-  - name: cocorico
+  - name: Shoot
     volume: 1
     pitch: 1
     spatialBlend: 0
@@ -1299,19 +1300,7 @@ MonoBehaviour:
     loop: 0
     playOnAwake: 0
     clips:
-    - {fileID: 8300000, guid: feec0ac8df60cfa428af170e709e6f5e, type: 3}
-    source: {fileID: 0}
-  - name: cocorico
-    volume: 1
-    pitch: 1
-    spatialBlend: 0
-    minDist3D: 0
-    maxDist3D: 0
-    mute: 0
-    loop: 0
-    playOnAwake: 0
-    clips:
-    - {fileID: 8300000, guid: feec0ac8df60cfa428af170e709e6f5e, type: 3}
+    - {fileID: 8300000, guid: 8d097b5b4ffd3604e8545909a10b3c81, type: 3}
     source: {fileID: 0}
 --- !u!4 &1257695943
 Transform:
@@ -1791,6 +1780,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 470d38673c95dce42bf56566b735d7c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Damage: 0
 --- !u!1 &1883004587
 GameObject:
   m_ObjectHideFlags: 0
@@ -2345,7 +2335,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  - {fileID: 2990413536285189653, guid: 008a94954ff5c864aad97cb95692b842, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2389,8 +2379,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 008a94954ff5c864aad97cb95692b842, type: 2}
+  m_sharedMaterial: {fileID: 2990413536285189653, guid: 008a94954ff5c864aad97cb95692b842, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2414,8 +2404,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 150
-  m_fontSizeBase: 150
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2440,7 +2430,7 @@ MonoBehaviour:
   checkPaddingRequired: 0
   m_isRichText: 1
   m_parseCtrlCharacters: 1
-  m_isOrthographic: 0
+  m_isOrthographic: 1
   m_isCullingEnabled: 0
   m_horizontalMapping: 0
   m_verticalMapping: 0

@@ -12,6 +12,7 @@ public class Melee : MonoBehaviour
         if(CanAttack && Input.GetKeyDown(KeyCode.F))
         {
             enemy.GetComponent<EnemyHealth>().TakeDamage(Damage);
+            SoundManager.Instance.PlaySound("Melee");
         }
     }
 
