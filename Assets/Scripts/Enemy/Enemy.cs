@@ -61,12 +61,12 @@ public class Enemy : MonoBehaviour
         _collider = GetComponent<Collider2D>();
 
         _camera = Camera.main;
-        height = _camera.orthographicSize;
-        width = _camera.orthographicSize * _camera.aspect;
-        minWidth = _camera.transform.position.x - width + offset.x;
-        maxWidth = _camera.transform.position.x + width - offset.x;
-        minHeight = _camera.transform.position.y + offset.y;
-        maxHeight = _camera.transform.position.y + height - offset.y;
+        height = _camera.orthographicSize * 2.0f;
+        width = height * _camera.aspect;
+        //minWidth = _camera.transform.position.x - width + offset.x;
+        //maxWidth = _camera.transform.position.x + width - offset.x;
+        //minHeight = _camera.transform.position.y + offset.y;
+        //maxHeight = _camera.transform.position.y + height - offset.y;
 
         //if (instance != null)            //test
         //{
@@ -121,8 +121,8 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            minWidth = _camera.transform.position.x - width + offset.x;
-            maxWidth = _camera.transform.position.x + width - offset.x;
+            minWidth = _camera.transform.position.x - width * 1.5f + offset.x;
+            maxWidth = _camera.transform.position.x + width * 1.5f - offset.x;
             minHeight = _camera.transform.position.y + offset.y;
             maxHeight = _camera.transform.position.y + height - offset.y;
 
