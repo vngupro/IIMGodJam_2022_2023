@@ -90,4 +90,13 @@ public class PlayerHealth : MonoBehaviour
 
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Enemy"))
+        {
+            float damage = collision.gameObject.GetComponent<Enemy>().damage;
+            TakeDamage((int)damage);
+        }
+    }
+
 }

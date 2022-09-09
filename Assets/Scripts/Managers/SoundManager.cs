@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
-
+using UnityEngine.UI;
 public class SoundManager : MonoBehaviour
 {
     public float fadeDuration = 2.0f;
@@ -48,6 +48,7 @@ public class SoundManager : MonoBehaviour
 
     private void Start()
     {
+        PlaySound("Main");
     }
 
     //How to use : SoundManager.Instance.PlaySound(name);
@@ -113,6 +114,18 @@ public class SoundManager : MonoBehaviour
         {
             s.source.mute = mute;
         }
+    }
+
+    public void SetMasterVolume(float sliderValue)
+    {
+        if (sliderValue <= 0.1)
+        {
+            audioMixer.SetFloat("VolumeMaster", 0.01f);
+        }else
+        {
+            audioMixer.SetFloat("VolumeMaster", Mathf.Log10(sliderValue) * 20);
+        }
+
     }
 
     public bool IsSoundPlaying(string sound)

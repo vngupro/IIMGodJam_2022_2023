@@ -106,6 +106,8 @@ public class Shooting : MonoBehaviour
 
         }
 
+        SoundManager.Instance.PlaySound("Shoot");
+
 
     }
 
