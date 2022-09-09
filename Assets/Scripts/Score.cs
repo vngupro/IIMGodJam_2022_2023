@@ -7,7 +7,7 @@ using TMPro;
 
 public class Score : MonoBehaviour
 {
-    private int score = 0;
+    public int score = 0;
     private TextMeshProUGUI text;
     
     // Start is called before the first frame update

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: aa9881d978a77ed449df5c588bc2174d
+=======
+guid: 349f35545cbd60240975f449a608cf58
+>>>>>>> vfx
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

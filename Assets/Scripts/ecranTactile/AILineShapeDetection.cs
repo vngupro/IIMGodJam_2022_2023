@@ -39,6 +39,7 @@ public class AILineShapeDetection : MonoBehaviour
     private bool isCircle;
     private bool antiExploit;
     private Animator anim;
+    public bool shot;
     private void Start()
     {
         line = GetComponent<LineRenderer>();
@@ -64,7 +65,7 @@ public class AILineShapeDetection : MonoBehaviour
             //evitons de diviser par 0
             if((positions[i].x - positions[0].x) !=0)
             {
-                //sont ils plus ou moins alignés
+                //sont ils plus ou moins alignï¿½s
                 coef.Add((positions[i].y - positions[0].y) / (positions[i].x - positions[0].x));
             }
             //"perimetre"         
@@ -90,13 +91,7 @@ public class AILineShapeDetection : MonoBehaviour
 
             }
         }
-        else
-        {
-            shape = ShapeType.Point;
-            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<cameraShake>().type = 0;
-            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<cameraShake>().duration = 0.125f;
-            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<cameraShake>().start = true;
-        }
+
 
         if(shape != ShapeType.Line)
         {
@@ -192,7 +187,14 @@ public class AILineShapeDetection : MonoBehaviour
             GameObject.FindGameObjectWithTag("MainCamera").GetComponent<cameraShake>().start = true;
             GameObject.FindGameObjectWithTag("MainCamera").GetComponent<cameraShake>().duration = 0.25f;
         }
-        if(shape == ShapeType.None)
+        if (lineLength < 1)
+        {
+            shape = ShapeType.Point;
+            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<cameraShake>().type = 0;
+            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<cameraShake>().duration = 0.125f;
+            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<cameraShake>().start = true;
+        }
+        if (shape == ShapeType.None)
         {
             anim.SetBool("wrongShape",true);
         }

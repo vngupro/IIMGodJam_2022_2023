@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 18fe6b6a65671694391a8708136328ea
+=======
+guid: 367441f035f21eb41a2571f56f97dfae
+>>>>>>> vfx
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}

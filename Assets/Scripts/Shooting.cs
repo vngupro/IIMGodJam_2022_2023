@@ -6,10 +6,23 @@ public class Shooting : MonoBehaviour
 {
     public Transform firePoint;
     public GameObject bulletPrefab;
-    private bool CanFire = true;
+    public GameObject bulletUlt;
 
     //public static Shooting instance;
 
+
+    public static Shooting instance;
+
+    [SerializeField] private int score;
+    [SerializeField] private int scoreMinUlt;
+    [SerializeField] private int scoreLost;
+    [SerializeField] private float croissanceDifficulty;
+    private bool ultimateMustache;
+
+    [SerializeField] private ParticleSystem ultParticles;
+    [SerializeField] private float buffTime;
+    public bool underUlt;
+    private float timeUltLeft;
     private void Awake()
     {
         //if(instance != null)
@@ -24,22 +37,47 @@ public class Shooting : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.T) && CanFire)
         {
-            InventoryManager iv = GameObject.Find("InventoryManager").GetComponent<InventoryManager>();
-            if(iv.guns[iv.currentSlot] != null)
+            if (GameObject.FindGameObjectWithTag("Line").GetComponent<AILineShapeDetection>().shape == ShapeType.Line && GameObject.FindGameObjectWithTag("Line").GetComponent<AILineShapeDetection>().shot)
             {
-                GunInfo gunInfo = iv.guns[iv.currentSlot].GetComponent<GunInfo>();
-                if (gunInfo.CanShoot())
-                {
-                    CanFire = false;
-                    Shoot(gunInfo.Speed, gunInfo.Damage);
-                    StartCoroutine(FireSpeed(gunInfo.SpeedBetweenShot));
-                }
+                Vector3 difference = GameObject.FindGameObjectWithTag("Line").GetComponent<AILineShapeDetection>().positions[0] - GameObject.FindGameObjectWithTag("Line").GetComponent<AILineShapeDetection>().positions[GameObject.FindGameObjectWithTag("Line").GetComponent<AILineShapeDetection>().positions.Count - 1];
+                float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+                GameObject.FindGameObjectWithTag("Line").GetComponent<AILineShapeDetection>().shot = false;
+                ShootWithLine(rotZ);
             }
+            if (GameObject.FindGameObjectWithTag("Line").GetComponent<AILineShapeDetection>().shape == ShapeType.Circle && ultimateMustache)
+            {
+                ultimateMustache = false;
+                scoreLost += score;
+                score = 0;
+                scoreMinUlt += (int)(scoreMinUlt * croissanceDifficulty / 100);
+                Instantiate(ultParticles, transform.position, Quaternion.identity);
+                underUlt = true;
+                timeUltLeft = buffTime;
+            }
+        }
+        score = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<Score>().score;
+
+        if (score >= scoreMinUlt + scoreLost)
+        {
+            ultimateMustache = true;
+        }
+
+        if (timeUltLeft > 0)
+        {
+            timeUltLeft -= Time.deltaTime;
+        }
+        else
+        {
+            underUlt = false;
+
         }
     }
 
 
-    void Shoot(float speed,int damage)
+
+
+
+    void Shoot()
     {
         bulletPrefab.GetComponent<Bullet>().damage = damage;
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
@@ -49,10 +87,21 @@ public class Shooting : MonoBehaviour
         SoundManager.Instance.PlaySound("Shoot");
     }
 
-    IEnumerator FireSpeed(float seconds)
+    void ShootWithLine(float rotationDegree)
     {
-        yield return new WaitForSeconds(seconds);
-        CanFire = true;
+        
+        if (underUlt)
+        {
+            GameObject bullet = Instantiate(bulletUlt, firePoint.position, Quaternion.Euler(0, 0, (-90 + rotationDegree)));
+
+        }
+        else
+        {
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.Euler(0, 0, (-90 + rotationDegree)));
+
+        }
+
+
     }
 
 }

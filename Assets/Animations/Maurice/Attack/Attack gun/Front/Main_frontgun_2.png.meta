@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: d72808803f7116c4a83ba60fa4d483ae
+=======
+guid: 89a5db1ee195f3b46b39fe90d84730e2
+>>>>>>> vfx
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -33,7 +37,11 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
+<<<<<<< HEAD
     filterMode: 1
+=======
+    filterMode: 0
+>>>>>>> vfx
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -70,7 +78,11 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
+<<<<<<< HEAD
     textureCompression: 1
+=======
+    textureCompression: 0
+>>>>>>> vfx
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0

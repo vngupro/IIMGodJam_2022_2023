@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public int damage;
-
-    private void Awake()
+    [SerializeField] private ParticleSystem particlesEnd;
+    public float bulletSpeed = 20f;
+    private void Start()
     {
-        Invoke("KillBullet", 5f);
+        GetComponent<Rigidbody2D>().velocity = -transform.up * bulletSpeed;
     }
-    private void KillBullet()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
+        if(particlesEnd != null)
+        {
+            Instantiate(particlesEnd, transform.position, Quaternion.Euler(0, 0, 0));
+        }
         Destroy(gameObject);
     }
 
