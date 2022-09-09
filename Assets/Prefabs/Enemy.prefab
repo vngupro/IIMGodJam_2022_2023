@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 1711203059461793152}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,7 +98,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1830122765323947776}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -189,6 +189,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firePoint: {fileID: 4874928494843320069}
   bulletPrefab: {fileID: 587487372775277040, guid: 1be9a76ad4dfc2e4e831175ce5ca211d, type: 3}
+  bulletUlt: {fileID: 0}
+  scoreManager: {fileID: 0}
+  score: 0
+  scoreMinUlt: 0
+  scoreLost: 0
+  croissanceDifficulty: 0
+  ultParticles: {fileID: 0}
+  buffTime: 0
+  underUlt: 0
+  CanFire: 0
+  damage: 1
+  speed: 100
 --- !u!1 &3528305442175955195
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,7 +9,11 @@ public class Score : MonoBehaviour
 {
     public int score = 0;
     private TextMeshProUGUI text;
-    
+
+    private void Awake()
+    {
+        GameEvents.OnAddScore.AddListener(AddScore2);
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +24,12 @@ public class Score : MonoBehaviour
     public void AddScore(int points,int pointsMultiplier)
     {
         score += points * pointsMultiplier;
+        text.text = score.ToString();
+    }
+
+    public void AddScore2(ScoreEventData data)
+    {
+        score += data.baseScore * data.scoreMultiplier;
         text.text = score.ToString();
     }
 

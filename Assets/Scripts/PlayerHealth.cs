@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(SpriteRenderer))]
 public class PlayerHealth : MonoBehaviour
 {
     public int maxHealth = 100;
@@ -17,6 +18,10 @@ public class PlayerHealth : MonoBehaviour
     public GameObject deathSceneUI;
 
 
+    private void Awake()
+    {
+        graphics = gameObject.GetComponent<SpriteRenderer>();
+    }
     void Start()
     {
         currentHealth = maxHealth;

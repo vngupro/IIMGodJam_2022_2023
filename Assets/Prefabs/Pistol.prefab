@@ -155,4 +155,4 @@ MonoBehaviour:
   MaxBullet: 30
   Damage: 1
   Speed: 200
-  SpeedBetweenShot: 0.2
+  SpeedBetweenShot: 0
