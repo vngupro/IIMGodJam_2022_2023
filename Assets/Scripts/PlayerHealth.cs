@@ -72,6 +72,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void Die()
     {
+        SoundManager.Instance.PlaySound("Dead");
         Debug.Log("IsDead");
         PlayerMovement.instance.enabled = false;
         PlayerMovement.instance.rb.bodyType = RigidbodyType2D.Kinematic;

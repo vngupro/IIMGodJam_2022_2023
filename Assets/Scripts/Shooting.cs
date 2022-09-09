@@ -5,17 +5,14 @@ using UnityEngine;
 public class Shooting : MonoBehaviour
 {
     public Transform firePoint;
-
     public GameObject bulletPrefab;
-
-    public float bulletForce = 20f;
-
+    private bool CanFire = true;
 
     public static Shooting instance;
 
     private void Awake()
     {
-        if (instance != null)
+        if(instance != null)
         {
             Debug.Log("Shooting");
             return;
@@ -23,40 +20,39 @@ public class Shooting : MonoBehaviour
         instance = this;
     }
 
-
     private void Update()
     {
-        if(GameObject.FindGameObjectWithTag("Line") != null)
+        if(Input.GetKey(KeyCode.T) && CanFire)
         {
-            if (GameObject.FindGameObjectWithTag("Line").GetComponent<AILineShapeDetection>().shape == ShapeType.Line)
+            InventoryManager iv = GameObject.Find("InventoryManager").GetComponent<InventoryManager>();
+            if(iv.guns[iv.currentSlot] != null)
             {
-                Vector3 difference = GameObject.FindGameObjectWithTag("Line").GetComponent<AILineShapeDetection>().positions[0] - GameObject.FindGameObjectWithTag("Line").GetComponent<AILineShapeDetection>().positions[GameObject.FindGameObjectWithTag("Line").GetComponent<AILineShapeDetection>().positions.Count - 1];
-                float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-                ShootWithLine(rotZ);
+                GunInfo gunInfo = iv.guns[iv.currentSlot].GetComponent<GunInfo>();
+                if (gunInfo.CanShoot())
+                {
+                    CanFire = false;
+                    Shoot(gunInfo.Speed, gunInfo.Damage);
+                    StartCoroutine(FireSpeed(gunInfo.SpeedBetweenShot));
+                }
             }
         }
-
-        if (Input.GetButtonDown("Fire1"))
-        {
-            Shoot();
-        }
     }
 
 
-
-    void Shoot()
+    void Shoot(float speed,int damage)
     {
+        bulletPrefab.GetComponent<Bullet>().damage = damage;
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.AddForce(firePoint.up * bulletForce, ForceMode2D.Impulse);      
+        rb.AddForce(firePoint.up * speed, ForceMode2D.Impulse);
 
+        SoundManager.Instance.PlaySound("Shoot");
     }
-    void ShootWithLine(float rotationDegree)
+
+    IEnumerator FireSpeed(float seconds)
     {
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.Euler(0, 0, (90 + rotationDegree)));
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.AddForce(firePoint.up * bulletForce, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(seconds);
+        CanFire = true;
     }
-
 
 }
