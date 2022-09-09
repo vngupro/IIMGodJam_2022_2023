@@ -156,6 +156,17 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag.Contains("PlayerBullet"))
+        {
+            float damage = collision.gameObject.GetComponent<Bullet>().damage;
+            TakeDamage(damage);
+            Destroy(collision.gameObject);
+
+            //SoundManager.Instance.PlaySound("Enemy_TakeDamage");
+        }
+    }
     public void TakeDamage(float value)
     {
         health.TakeDamage(value);
@@ -166,6 +177,7 @@ public class Enemy : MonoBehaviour
             {
                 OnDeath();
             }
+            GameEvents.OnAddScore.Invoke(new ScoreEventData(1, 1));
             Destroy(gameObject);
         }
     }

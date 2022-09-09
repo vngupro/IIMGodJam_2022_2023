@@ -7,9 +7,9 @@ public class Shooting : MonoBehaviour
     public Transform firePoint;
     public GameObject bulletPrefab;
     public GameObject bulletUlt;
+    public Score scoreManager;
 
     //public static Shooting instance;
-
 
     public static Shooting instance;
 
@@ -28,6 +28,7 @@ public class Shooting : MonoBehaviour
     public float speed = 100;
     private void Awake()
     {
+        scoreManager = FindObjectOfType<Score>();
         //if(instance != null)
         //{
         //    Debug.Log("Shooting");
@@ -58,7 +59,8 @@ public class Shooting : MonoBehaviour
                 timeUltLeft = buffTime;
             }
         }
-        score = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<Score>().score;
+        
+        score = scoreManager.score;
 
         if (score >= scoreMinUlt + scoreLost)
         {
