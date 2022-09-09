@@ -23,6 +23,9 @@ public class Shooting : MonoBehaviour
     [SerializeField] private float buffTime;
     public bool underUlt;
     private float timeUltLeft;
+    public bool CanFire = false;
+    public float damage = 1;
+    public float speed = 100;
     private void Awake()
     {
         //if(instance != null)
@@ -35,7 +38,7 @@ public class Shooting : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKey(KeyCode.T) && CanFire)
+        if(CanFire && GameObject.FindGameObjectWithTag("Line") != null)
         {
             if (GameObject.FindGameObjectWithTag("Line").GetComponent<AILineShapeDetection>().shape == ShapeType.Line && GameObject.FindGameObjectWithTag("Line").GetComponent<AILineShapeDetection>().shot)
             {

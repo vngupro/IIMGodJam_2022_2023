@@ -881,6 +881,7 @@ GameObject:
   m_Component:
   - component: {fileID: 966720333}
   - component: {fileID: 966720332}
+  - component: {fileID: 966720334}
   m_Layer: 0
   m_Name: Main_sidewalk_2
   m_TagString: Untagged
@@ -955,6 +956,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &966720334
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966720331}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: eae90765a7d17494982cd62e0bf98561, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &975516615
 GameObject:
   m_ObjectHideFlags: 3
@@ -1217,7 +1238,6 @@ MonoBehaviour:
   firePoint: {fileID: 508955297}
   bulletPrefab: {fileID: 334330703648726779, guid: f2c60e35837eaf9419d8fda48a32a043, type: 3}
   bulletUlt: {fileID: 8442507038725797747, guid: c04dab7eff30c424e93499452ec6bed8, type: 3}
-  bulletForce: 20
   score: 0
   scoreMinUlt: 200
   scoreLost: 0
@@ -1225,6 +1245,9 @@ MonoBehaviour:
   ultParticles: {fileID: 191999337209006381, guid: 31f603796a0ce7c48aa85a24afa16b1f, type: 3}
   buffTime: 10
   underUlt: 0
+  CanFire: 1
+  damage: 1
+  speed: 100
 --- !u!1001 &1212653398
 PrefabInstance:
   m_ObjectHideFlags: 0

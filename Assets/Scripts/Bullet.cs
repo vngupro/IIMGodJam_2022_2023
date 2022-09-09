@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private ParticleSystem particlesEnd;
     public float bulletSpeed = 20f;
+    public float damage = 1f;
     private void Start()
     {
         GetComponent<Rigidbody2D>().velocity = -transform.up * bulletSpeed;
@@ -16,16 +17,11 @@ public class Bullet : MonoBehaviour
         {
             Instantiate(particlesEnd, transform.position, Quaternion.Euler(0, 0, 0));
         }
-        Destroy(gameObject);
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        // if touching something other than player or enemy
-        if( !( collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Enemy") ))
+        if (!(collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Enemy")))
         {
-            KillBullet();
+            Destroy(gameObject);
         }
-
     }
+
+
 }
