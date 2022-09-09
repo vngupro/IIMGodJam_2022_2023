@@ -34,7 +34,7 @@ public class PauseManager : MonoBehaviour
     {
         PlayerMovement.instance.enabled = false;
         
-        Shooting.instance.enabled = false;
+        //Shooting.instance.enabled = false;
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0;
         isPaused = true;
@@ -50,7 +50,7 @@ public class PauseManager : MonoBehaviour
     {
         PlayerMovement.instance.enabled = true;      
 
-        Shooting.instance.enabled = true;
+        //Shooting.instance.enabled = true;
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1;
         isPaused = false;

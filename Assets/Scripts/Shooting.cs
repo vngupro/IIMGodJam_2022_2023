@@ -8,16 +8,16 @@ public class Shooting : MonoBehaviour
     public GameObject bulletPrefab;
     private bool CanFire = true;
 
-    public static Shooting instance;
+    //public static Shooting instance;
 
     private void Awake()
     {
-        if(instance != null)
-        {
-            Debug.Log("Shooting");
-            return;
-        }
-        instance = this;
+        //if(instance != null)
+        //{
+        //    Debug.Log("Shooting");
+        //    return;
+        //}
+        //instance = this;
     }
 
     private void Update()
@@ -44,7 +44,7 @@ public class Shooting : MonoBehaviour
         bulletPrefab.GetComponent<Bullet>().damage = damage;
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.AddForce(firePoint.up * speed, ForceMode2D.Impulse);
+        rb.AddForce(firePoint.up * speed * Time.fixedDeltaTime, ForceMode2D.Impulse);
 
         SoundManager.Instance.PlaySound("Shoot");
     }

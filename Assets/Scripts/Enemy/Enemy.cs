@@ -149,23 +149,14 @@ public class Enemy : MonoBehaviour
         if (other.gameObject.tag.Contains("PlayerBullet"))
         {
             float damage = other.gameObject.GetComponent<Bullet>().damage;
-            health.TakeDamage(damage);
+            TakeDamage(damage);
             Destroy(other.gameObject);
 
             //SoundManager.Instance.PlaySound("Enemy_TakeDamage");
         }
-
-        //if(other.gameObject.tag.Contains("PlayerWeapon"))
-        //{
-        //    //float damage = other.gameObject.GetComponent<DamageSystem>().damage;
-        //    //health.TakeDamage(damage);
-        //    health.TakeDamage(1);
-
-        //    //SoundManager.Instance.PlaySound("Enemy_TakeDamage");
-        //}
     }
 
-    public void TakeDamage(int value)
+    public void TakeDamage(float value)
     {
         health.TakeDamage(value);
 

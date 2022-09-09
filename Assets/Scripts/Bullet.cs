@@ -14,4 +14,14 @@ public class Bullet : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // if touching something other than player or enemy
+        if( !( collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Enemy") ))
+        {
+            KillBullet();
+        }
+
+    }
 }

@@ -78,7 +78,7 @@ public class PlayerHealth : MonoBehaviour
         PlayerMovement.instance.rb.bodyType = RigidbodyType2D.Kinematic;
         PlayerMovement.instance.playerCollider.enabled = false;        
         deathSceneUI.SetActive(true);
-        Shooting.instance.enabled = false;
+        //Shooting.instance.enabled = false;
 
         //Enemy.instance.enabled = false;
 
