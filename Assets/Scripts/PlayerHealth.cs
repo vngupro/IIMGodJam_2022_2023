@@ -17,10 +17,6 @@ public class PlayerHealth : MonoBehaviour
     public GameObject deathSceneUI;
 
 
-
-
-
-
     void Start()
     {
         currentHealth = maxHealth;
@@ -83,7 +79,7 @@ public class PlayerHealth : MonoBehaviour
         deathSceneUI.SetActive(true);
         Shooting.instance.enabled = false;
 
-        Enemy.instance.enabled = false;
+        //Enemy.instance.enabled = false;
 
 
     }

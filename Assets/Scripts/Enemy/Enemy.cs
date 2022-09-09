@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     public EnemyAgent enemyAgent;
     public float timeBeforeChangeDirection = 3.0f;
     public float distanceTolerance = 0.2f;                  // anti trembling mouvement
+    public Vector2 offset = new Vector2(0.5f, 0.5f);
 
     [Header("____________DEBUG___________")]
     public float damage = 0.0f;
@@ -23,32 +24,20 @@ public class Enemy : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public Rigidbody2D rb;
     public Collider2D _collider;
+    public Camera _camera;
     public Vector2 saveVelocity; // save Direction
 
-    //[SerializeField] List<Transform> context = new List<Transform>();
-    [SerializeField] bool forceDirection = false;
-    private float maxHeight = 0.0f;
-    private float minHeight = 0.0f;
-    private float maxWidth = 0.0f;
-    private float minWidth = 0.0f;
-    private float halfWidth = 0.0f;
-    [SerializeField] Vector2 targetPosition = new Vector2(0.0f, 0.0f);
-
-
+    [SerializeField] private bool forceDirection = false;
+    [SerializeField] private float width = 0.0f;
+    [SerializeField] private float height = 0.0f;
+    [SerializeField] private float maxHeight = 0.0f;
+    [SerializeField] private float minHeight = 0.0f;
+    [SerializeField] private float maxWidth = 0.0f;
+    [SerializeField] private float minWidth = 0.0f;
+    [SerializeField] private Vector2 targetPosition = new Vector2(0.0f, 0.0f);
 
     public event System.Action OnDeath;
-
-
-
-
-    public static Enemy instance; //test
-
-
-
-
-
-
-
+    //public static Enemy instance; //test
 
     public virtual void Awake()
     {
@@ -71,24 +60,24 @@ public class Enemy : MonoBehaviour
 
         _collider = GetComponent<Collider2D>();
 
+        _camera = Camera.main;
+        height = _camera.orthographicSize;
+        width = _camera.orthographicSize * _camera.aspect;
+        minWidth = _camera.transform.position.x - width / 2 + offset.x;
+        maxWidth = _camera.transform.position.x + width / 2 - offset.x;
+        minHeight = _camera.transform.position.y + offset.y;
+        maxHeight = _camera.transform.position.y - offset.y;
 
-
-        if (instance != null)            //test
-        {
-            Debug.Log("Enemy");
-            return;
-        }
-        instance = this;
-
-
-
-
+        //if (instance != null)            //test
+        //{
+        //    Debug.Log("Enemy");
+        //    return;
+        //}
+        //instance = this;
     }
+
     public virtual void Start()
     {
-        minHeight = GridManager.Instance.GetMinHeight() / 2;
-        maxHeight = GridManager.Instance.GetMaxHeight() / 2;
-        halfWidth = Camera.main.aspect * Camera.main.orthographicSize;
         targetPosition = transform.position;
     }
 
@@ -132,8 +121,8 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            minWidth = Camera.main.transform.position.x - halfWidth;
-            maxWidth = Camera.main.transform.position.x + halfWidth;
+            //minWidth = Camera.main.transform.position.x - halfWidth;
+            //maxWidth = Camera.main.transform.position.x + halfWidth;
 
             float newPosX = Random.Range(minWidth, maxWidth);
             float newPosY = Random.Range(minHeight, maxHeight);
