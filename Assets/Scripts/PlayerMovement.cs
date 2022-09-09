@@ -14,14 +14,7 @@ public class PlayerMovement : MonoBehaviour
 
     public GameObject player;
     public static PlayerMovement instance;
-
-    
-
-  
-    
-
-
-
+    private Animator Anim;
 
     private void Awake()
     {
@@ -32,33 +25,53 @@ public class PlayerMovement : MonoBehaviour
         }
         instance = this;
     }
+    private void Start()
+    {
+        Anim = GetComponent<Animator>();
+    }
 
     private void Update()
     {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
+        // reset anim
+
         if(movement.x < 0)
         {
-            transform.rotation = Quaternion.Euler(0, 0, -180);
+            transform.rotation = Quaternion.Euler(0, 180, 0);
         }
-        else if(movement.x > 0)
+
+        if(movement.x > 0)
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);
 
         }
-        else if (movement.y > 0)
+        if ( movement.x != 0)
         {
-            transform.rotation = Quaternion.Euler(0, 0, 90);
-
+            Anim.SetBool("walkSide", true);
         }
-        else if (movement.y < 0)
+        else
         {
-            transform.rotation = Quaternion.Euler(0, 0, -90);
-
+            Anim.SetBool("walkSide", false);
+        }
+        if (movement.y < 0)
+        {
+            Anim.SetBool("walkFront", true);
+        }
+        else
+        {
+            Anim.SetBool("walkFront", false);
+        }
+        if (movement.y > 0)
+        {
+            Anim.SetBool("walkBehind", true);
+        }
+        else
+        {
+            Anim.SetBool("walkBehind", false);
         }
 
-        
 
 
     }
