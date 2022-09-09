@@ -15,7 +15,7 @@ MonoBehaviour:
   health: 1
   damage: 10
   maxDamage: 20
-  speed: 0.5
+  speed: 50
   maxSpeed: 20
   speedCurve:
     serializedVersion: 2

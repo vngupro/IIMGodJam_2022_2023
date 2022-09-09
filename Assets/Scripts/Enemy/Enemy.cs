@@ -110,14 +110,18 @@ public class Enemy : MonoBehaviour
 
     private void MoveToTarget()
     {
-        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, enemyAgent.speed * Time.fixedDeltaTime);
+        rb.velocity = saveVelocity * Time.fixedDeltaTime;
+        //rb.MovePosition(rb.position + saveVelocity * Time.fixedDeltaTime);
+        //transform.position = Vector3.MoveTowards(transform.position, target.transform.position, enemyAgent.speed * Time.fixedDeltaTime);
     }
 
     public void MoveRandom()
     {
         if(Vector2.Distance(targetPosition, transform.position) > distanceTolerance)
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, enemyAgent.speed * Time.fixedDeltaTime);
+            rb.velocity = saveVelocity * Time.fixedDeltaTime;
+            //rb.MovePosition(rb.position + saveVelocity * Time.fixedDeltaTime);
+            //transform.position = Vector3.MoveTowards(transform.position, targetPosition, enemyAgent.speed * Time.fixedDeltaTime);
         }
         else
         {
@@ -129,6 +133,10 @@ public class Enemy : MonoBehaviour
             float newPosX = Random.Range(minWidth, maxWidth);
             float newPosY = Random.Range(minHeight, maxHeight);
             targetPosition = new Vector2(newPosX, newPosY);
+            Vector2 vEnemyShip = targetPosition - (Vector2)transform.position;
+            Vector2 dirEnemy = vEnemyShip.normalized;
+            Vector2 velocity = dirEnemy * speed;
+            saveVelocity = velocity;
         }
     }
 
@@ -136,7 +144,7 @@ public class Enemy : MonoBehaviour
     {
         Vector2 vEnemyShip = target.transform.position - transform.position;
         Vector2 dirEnemy = vEnemyShip.normalized;
-        Vector2 velocity = dirEnemy * speed * Time.fixedDeltaTime;
+        Vector2 velocity = dirEnemy * speed;
         saveVelocity = velocity;
     }
 

@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public Camera _camera;
     public GameObject player;
+    public GameObject pauseMenu;
     public Vector2 offset = Vector2.zero;
     private void Awake()
     {
@@ -15,9 +16,26 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         _camera.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + offset.y, _camera.transform.position.z);   
-        if (Input.GetKey("escape"))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape))
         {
-            Application.Quit();
+            Pause();
         }
+    }
+
+    public void Resume()
+    {
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1;
+    }
+
+    public void Pause()
+    {
+        pauseMenu.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }
