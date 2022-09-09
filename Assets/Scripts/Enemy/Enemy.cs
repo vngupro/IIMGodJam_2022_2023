@@ -177,7 +177,8 @@ public class Enemy : MonoBehaviour
             {
                 OnDeath();
             }
-            GameEvents.OnAddScore.Invoke(new ScoreEventData(1, 1));
+            GameEvents.OnAddScore.Invoke(new ScoreEventData(20, 1));
+          
             Destroy(gameObject);
         }
     }

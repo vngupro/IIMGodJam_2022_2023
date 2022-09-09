@@ -33,6 +33,7 @@ public class Score : MonoBehaviour
         text.text = score.ToString();
     }
 
+
     public int GetScore()
     {
         return score;

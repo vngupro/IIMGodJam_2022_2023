@@ -6,11 +6,12 @@ public class BarreVie : MonoBehaviour
 {
     [SerializeField] private Gradient gradient;
     private float pourcent;
-
+    public PlayerHealth Player;
+    
 
     void Update()
     {
-        pourcent = (float)GameObject.FindGameObjectWithTag("Player").GetComponent<Shooting>().score / (float)GameObject.FindGameObjectWithTag("Player").GetComponent<Shooting>().scoreMinUlt;
+        pourcent =  (float)Player.currentHealth / 100.0f;
         SpriteRenderer _renderer = GetComponent<SpriteRenderer>();
         _renderer.color = gradient.Evaluate(pourcent);
         if (pourcent > 1)

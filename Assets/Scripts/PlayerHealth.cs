@@ -21,6 +21,7 @@ public class PlayerHealth : MonoBehaviour
     private void Awake()
     {
         graphics = gameObject.GetComponent<SpriteRenderer>();
+        currentHealth = 100;
     }
     void Start()
     {
