@@ -17,6 +17,6 @@ public class Barre : MonoBehaviour
         {
             pourcent = 1;
         }
-        transform.localScale = new Vector3(transform.localScale.x, pourcent, transform.localScale.z);
+        transform.localScale = new Vector3(pourcent, transform.localScale.y , transform.localScale.z);
     }
 }
