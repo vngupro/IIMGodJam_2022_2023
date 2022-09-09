@@ -164,10 +164,10 @@ public class AILineShapeDetection : MonoBehaviour
 
                 if (rayon - tolerence / 6 < lineLength/(Mathf.PI * 2) && rayon + tolerence / 6 > lineLength / (Mathf.PI * 2))
                 {
-                    Debug.Log(rayon);
+                    //Debug.Log(rayon);
 
-                    Debug.Log(rayon - tolerence / 7 < lineLength / (Mathf.PI * 2));
-                    Debug.Log(lineLength / (Mathf.PI * 2));//rayon
+                    //Debug.Log(rayon - tolerence / 7 < lineLength / (Mathf.PI * 2));
+                    //Debug.Log(lineLength / (Mathf.PI * 2));//rayon
 
                 }
                 else

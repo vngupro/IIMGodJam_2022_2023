@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Gun
   - Line
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -45,4 +46,7 @@ TagManager:
     locked: 0
   - name: Foreground
     uniqueID: 1248286433
+    locked: 0
+  - name: BottomScreen
+    uniqueID: 1504912343
     locked: 0

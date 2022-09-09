@@ -5,20 +5,15 @@ using UnityEngine;
 public class SpawnSystem : MonoBehaviour
 {
     public Wave[] waves;
-
     public Enemy enemy;
-    
+    public List<Transform> spawnPoints = new List<Transform>();
 
-    Wave currentWave;
-    int currentWaveNumber;
-
-    int enemiesRemainingToSpawn;
-    int enemiesRemainingInAlive;
-    float nextSpawnTime;
-
-    public Transform spawnPoint;
-
-    
+    [Header("_____ DEBUG ______")]
+    [SerializeField] private Wave currentWave;
+    [SerializeField] private int currentWaveNumber;
+    [SerializeField] private int enemiesRemainingToSpawn;
+    [SerializeField] private int enemiesRemainingInAlive;
+    [SerializeField] private float nextSpawnTime;
 
     void Start()
     {
@@ -32,13 +27,9 @@ public class SpawnSystem : MonoBehaviour
             enemiesRemainingToSpawn--;
             nextSpawnTime = Time.time + currentWave.timeBetweenSpawns;
 
-           
-            Enemy spawnEnemy = Instantiate(enemy, spawnPoint.position, Quaternion.identity) as Enemy;
-
-            
-
+            int rng = Random.Range(0, spawnPoints.Count - 1);
+            Enemy spawnEnemy = Instantiate(enemy, spawnPoints[rng].position, Quaternion.identity) as Enemy;
             spawnEnemy.OnDeath += OnEnemyDeath;
-
         }
     }
 
@@ -61,12 +52,8 @@ public class SpawnSystem : MonoBehaviour
 
             enemiesRemainingToSpawn = currentWave.enemyCount;
             enemiesRemainingInAlive = enemiesRemainingToSpawn;
-        }
-        
+        }   
     }
-
-
-
 
     [System.Serializable]
     public class Wave

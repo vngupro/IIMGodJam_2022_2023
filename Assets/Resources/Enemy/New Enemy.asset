@@ -43,7 +43,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   rotationSpeed: 100
   detectionRadius: 2
-  sprite: {fileID: -2413806693520163455, guid: 7fd099687a2fc614498b6f45820e368f, type: 3}
+  sprite: {fileID: 21300000, guid: ada9048a6cde054438e4e1758f804016, type: 3}
   spriteAttack: {fileID: 0}
   spriteTakeDamage: {fileID: 0}
   spriteOnDeath: {fileID: 0}

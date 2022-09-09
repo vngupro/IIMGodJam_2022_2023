@@ -63,10 +63,10 @@ public class Enemy : MonoBehaviour
         _camera = Camera.main;
         height = _camera.orthographicSize;
         width = _camera.orthographicSize * _camera.aspect;
-        minWidth = _camera.transform.position.x - width / 2 + offset.x;
-        maxWidth = _camera.transform.position.x + width / 2 - offset.x;
+        minWidth = _camera.transform.position.x - width + offset.x;
+        maxWidth = _camera.transform.position.x + width - offset.x;
         minHeight = _camera.transform.position.y + offset.y;
-        maxHeight = _camera.transform.position.y - offset.y;
+        maxHeight = _camera.transform.position.y + height - offset.y;
 
         //if (instance != null)            //test
         //{
@@ -121,8 +121,10 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            //minWidth = Camera.main.transform.position.x - halfWidth;
-            //maxWidth = Camera.main.transform.position.x + halfWidth;
+            minWidth = _camera.transform.position.x - width + offset.x;
+            maxWidth = _camera.transform.position.x + width - offset.x;
+            minHeight = _camera.transform.position.y + offset.y;
+            maxHeight = _camera.transform.position.y + height - offset.y;
 
             float newPosX = Random.Range(minWidth, maxWidth);
             float newPosY = Random.Range(minHeight, maxHeight);

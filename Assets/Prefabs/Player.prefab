@@ -76,8 +76,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1248286433
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a271e07d43b7b254eae8d3b3fab1faa6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -114,7 +114,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4968490895437526948}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -125,7 +125,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &4968490895437526949
 MonoBehaviour:
@@ -176,7 +176,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firePoint: {fileID: 4968490896201448816}
   bulletPrefab: {fileID: 587487372775277040, guid: 4040c97aa94ad7f4484a2f14f2e1f24e, type: 3}
-  bulletForce: 20
 --- !u!1 &4968490896201448823
 GameObject:
   m_ObjectHideFlags: 0
