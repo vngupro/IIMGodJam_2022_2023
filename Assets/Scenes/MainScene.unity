@@ -3364,6 +3364,34 @@ PrefabInstance:
       propertyPath: m_TagString
       value: ScoreManager
       objectReference: {fileID: 0}
+    - target: {fileID: 2095820596574756759, guid: 8c52aa06e65657742b29f4579aeddc03, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2095820596574756759, guid: 8c52aa06e65657742b29f4579aeddc03, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2095820596574756759, guid: 8c52aa06e65657742b29f4579aeddc03, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 508470842}
+    - target: {fileID: 2095820596574756759, guid: 8c52aa06e65657742b29f4579aeddc03, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2095820596574756759, guid: 8c52aa06e65657742b29f4579aeddc03, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetMasterVolume
+      objectReference: {fileID: 0}
+    - target: {fileID: 2095820596574756759, guid: 8c52aa06e65657742b29f4579aeddc03, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SoundManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2095820596574756759, guid: 8c52aa06e65657742b29f4579aeddc03, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c52aa06e65657742b29f4579aeddc03, type: 3}
 --- !u!1001 &1784693910
