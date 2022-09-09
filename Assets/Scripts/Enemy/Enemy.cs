@@ -144,22 +144,21 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.tag.Contains("PlayerBullet"))
         {
-            //float damage = other.gameObject.GetComponent<DamageSystem>().damage;
-            //health.TakeDamage(damage);
-            health.TakeDamage(1);
+            float damage = other.gameObject.GetComponent<Bullet>().damage;
+            health.TakeDamage(damage);
             Destroy(other.gameObject);
 
             //SoundManager.Instance.PlaySound("Enemy_TakeDamage");
         }
 
-        if(other.gameObject.tag.Contains("PlayerWeapon"))
-        {
-            //float damage = other.gameObject.GetComponent<DamageSystem>().damage;
-            //health.TakeDamage(damage);
-            health.TakeDamage(1);
+        //if(other.gameObject.tag.Contains("PlayerWeapon"))
+        //{
+        //    //float damage = other.gameObject.GetComponent<DamageSystem>().damage;
+        //    //health.TakeDamage(damage);
+        //    health.TakeDamage(1);
 
-            //SoundManager.Instance.PlaySound("Enemy_TakeDamage");
-        }
+        //    //SoundManager.Instance.PlaySound("Enemy_TakeDamage");
+        //}
     }
 
     public void TakeDamage(int value)
@@ -200,6 +199,7 @@ public class Enemy : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, enemyAgent.detectionRadius);
     }
+
 }
 
 public enum Direction
