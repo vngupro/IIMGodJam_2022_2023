@@ -111,8 +111,6 @@ public class Enemy : MonoBehaviour
     private void MoveToTarget()
     {
         rb.velocity = saveVelocity * Time.fixedDeltaTime;
-        //rb.MovePosition(rb.position + saveVelocity * Time.fixedDeltaTime);
-        //transform.position = Vector3.MoveTowards(transform.position, target.transform.position, enemyAgent.speed * Time.fixedDeltaTime);
     }
 
     public void MoveRandom()
@@ -120,8 +118,6 @@ public class Enemy : MonoBehaviour
         if(Vector2.Distance(targetPosition, transform.position) > distanceTolerance)
         {
             rb.velocity = saveVelocity * Time.fixedDeltaTime;
-            //rb.MovePosition(rb.position + saveVelocity * Time.fixedDeltaTime);
-            //transform.position = Vector3.MoveTowards(transform.position, targetPosition, enemyAgent.speed * Time.fixedDeltaTime);
         }
         else
         {
@@ -179,7 +175,6 @@ public class Enemy : MonoBehaviour
             {
                 OnDeath();
             }
-            // Coroutine ? or OnDestroy ?
             Destroy(gameObject);
         }
     }
