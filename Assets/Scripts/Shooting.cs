@@ -13,8 +13,8 @@ public class Shooting : MonoBehaviour
 
     public static Shooting instance;
 
-    [SerializeField] private int score;
-    [SerializeField] private int scoreMinUlt;
+    public int score;
+    public int scoreMinUlt;
     [SerializeField] private int scoreLost;
     [SerializeField] private float croissanceDifficulty;
     private bool ultimateMustache;
