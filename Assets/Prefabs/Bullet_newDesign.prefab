@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5327555294258638535}
   - component: {fileID: 6250358320893251984}
   - component: {fileID: 2567668461534105746}
+  - component: {fileID: 3364217481721179488}
   m_Layer: 0
   m_Name: Bullet_newDesign
   m_TagString: Untagged
@@ -137,6 +138,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2afb5b653c6befa46869495b88ccfc32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particlesEnd: {fileID: 0}
+  bulletSpeed: 20
 --- !u!96 &2567668461534105746
 TrailRenderer:
   serializedVersion: 2
@@ -245,3 +248,16 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &3364217481721179488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 334330703648726779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07014cf170bfea74e97990d112450ecd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay: 1

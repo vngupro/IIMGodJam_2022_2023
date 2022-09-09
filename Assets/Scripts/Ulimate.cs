@@ -13,6 +13,7 @@ public class Ulimate : MonoBehaviour
     [SerializeField] private ParticleSystem ultParticles;
     [SerializeField] private float buffTime;
     public bool underUlt;
+    private float timeUltLeft;
 
     private void Update()
     {
@@ -30,6 +31,17 @@ public class Ulimate : MonoBehaviour
             scoreMinUlt += (int)(scoreMinUlt * croissanceDifficulty/100);
             Instantiate(ultParticles, transform.position, Quaternion.identity);
             underUlt = true;
+            timeUltLeft = buffTime;
+            
+        }
+        if (timeUltLeft > 0)
+        {
+            timeUltLeft -= Time.deltaTime;
+        }
+        else
+        {
+            underUlt = false;
+            
         }
     }
 }

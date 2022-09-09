@@ -1133,7 +1133,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1140560706}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 78f9ac3780b0ed544a49a0d74956cd79, type: 3}
   m_Name: 
@@ -1216,7 +1216,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firePoint: {fileID: 508955297}
   bulletPrefab: {fileID: 334330703648726779, guid: f2c60e35837eaf9419d8fda48a32a043, type: 3}
+  bulletUlt: {fileID: 8442507038725797747, guid: c04dab7eff30c424e93499452ec6bed8, type: 3}
   bulletForce: 20
+  score: 0
+  scoreMinUlt: 200
+  scoreLost: 0
+  croissanceDifficulty: 20
+  ultParticles: {fileID: 191999337209006381, guid: 31f603796a0ce7c48aa85a24afa16b1f, type: 3}
+  buffTime: 10
+  underUlt: 0
 --- !u!1001 &1212653398
 PrefabInstance:
   m_ObjectHideFlags: 0

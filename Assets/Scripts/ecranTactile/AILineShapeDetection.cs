@@ -91,13 +91,7 @@ public class AILineShapeDetection : MonoBehaviour
 
             }
         }
-        else
-        {
-            shape = ShapeType.Point;
-            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<cameraShake>().type = 0;
-            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<cameraShake>().duration = 0.125f;
-            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<cameraShake>().start = true;
-        }
+
 
         if(shape != ShapeType.Line)
         {
@@ -165,11 +159,6 @@ public class AILineShapeDetection : MonoBehaviour
 
                 if (rayon - tolerence / 6 < lineLength/(Mathf.PI * 2) && rayon + tolerence / 6 > lineLength / (Mathf.PI * 2))
                 {
-                    Debug.Log(rayon);
-
-                    Debug.Log(rayon - tolerence / 7 < lineLength / (Mathf.PI * 2));
-                    Debug.Log(lineLength / (Mathf.PI * 2));//rayon
-
                 }
                 else
                 {
@@ -193,7 +182,14 @@ public class AILineShapeDetection : MonoBehaviour
             GameObject.FindGameObjectWithTag("MainCamera").GetComponent<cameraShake>().start = true;
             GameObject.FindGameObjectWithTag("MainCamera").GetComponent<cameraShake>().duration = 0.25f;
         }
-        if(shape == ShapeType.None)
+        if (lineLength < 1)
+        {
+            shape = ShapeType.Point;
+            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<cameraShake>().type = 0;
+            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<cameraShake>().duration = 0.125f;
+            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<cameraShake>().start = true;
+        }
+        if (shape == ShapeType.None)
         {
             anim.SetBool("wrongShape",true);
         }

@@ -108,7 +108,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &2825934746293286936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,6 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particlesEnd: {fileID: 8332014996792354620, guid: 71278132d19655e408a12fb47354ab3c, type: 3}
+  bulletSpeed: 20
 --- !u!70 &645082354824203353
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

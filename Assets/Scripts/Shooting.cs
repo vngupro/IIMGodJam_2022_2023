@@ -7,12 +7,23 @@ public class Shooting : MonoBehaviour
     public Transform firePoint;
 
     public GameObject bulletPrefab;
+    public GameObject bulletUlt;
 
     public float bulletForce = 20f;
 
 
     public static Shooting instance;
 
+    [SerializeField] private int score;
+    [SerializeField] private int scoreMinUlt;
+    [SerializeField] private int scoreLost;
+    [SerializeField] private float croissanceDifficulty;
+    private bool ultimateMustache;
+
+    [SerializeField] private ParticleSystem ultParticles;
+    [SerializeField] private float buffTime;
+    public bool underUlt;
+    private float timeUltLeft;
     private void Awake()
     {
         if (instance != null)
@@ -35,10 +46,36 @@ public class Shooting : MonoBehaviour
                 GameObject.FindGameObjectWithTag("Line").GetComponent<AILineShapeDetection>().shot = false;
                 ShootWithLine(rotZ);
             }
+            if (GameObject.FindGameObjectWithTag("Line").GetComponent<AILineShapeDetection>().shape == ShapeType.Circle && ultimateMustache)
+            {
+                ultimateMustache = false;
+                scoreLost += score;
+                score = 0;
+                scoreMinUlt += (int)(scoreMinUlt * croissanceDifficulty / 100);
+                Instantiate(ultParticles, transform.position, Quaternion.identity);
+                underUlt = true;
+                timeUltLeft = buffTime;
+            }
+        }
+        score = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<Score>().score;
+
+        if (score >= scoreMinUlt + scoreLost)
+        {
+            ultimateMustache = true;
         }
 
+        if (timeUltLeft > 0)
+        {
+            timeUltLeft -= Time.deltaTime;
+        }
+        else
+        {
+            underUlt = false;
 
+        }
     }
+
+
 
 
 
@@ -49,9 +86,20 @@ public class Shooting : MonoBehaviour
         rb.AddForce(firePoint.up * bulletForce, ForceMode2D.Impulse);      
 
     }
+
     void ShootWithLine(float rotationDegree)
     {
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.Euler(0, 0, (-90 + rotationDegree)));
+        
+        if (underUlt)
+        {
+            GameObject bullet = Instantiate(bulletUlt, firePoint.position, Quaternion.Euler(0, 0, (-90 + rotationDegree)));
+
+        }
+        else
+        {
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.Euler(0, 0, (-90 + rotationDegree)));
+
+        }
 
 
     }
