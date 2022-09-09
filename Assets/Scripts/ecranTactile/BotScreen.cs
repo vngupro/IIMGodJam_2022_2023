@@ -12,6 +12,7 @@ public class BotScreen : MonoBehaviour
     public Vector2 lastPosition;
     private LineRenderer line_copy;
     [SerializeField] private int pixelByUnits;
+    public bool shot;
 
     private Vector2 startShape;
     void Start()
@@ -58,7 +59,7 @@ public class BotScreen : MonoBehaviour
                 line_copy.GetComponent<LineAutoDestroy>().readyToDie = true;
                 line_copy.GetComponent<LineRendererParticles>().particlesState = false;
                 line_copy.GetComponent<AILineShapeDetection>().AIShape(startShape, new Vector3(mousePosition[0] / pixelByUnits + mainCamera.transform.position.x, mousePosition[1] / pixelByUnits + mainCamera.transform.position.y, -1));
-                
+                line_copy.GetComponent<AILineShapeDetection>().shot = true;
             }
 
         }

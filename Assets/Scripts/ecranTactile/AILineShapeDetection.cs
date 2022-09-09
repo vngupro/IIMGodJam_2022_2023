@@ -39,6 +39,7 @@ public class AILineShapeDetection : MonoBehaviour
     private bool isCircle;
     private bool antiExploit;
     private Animator anim;
+    public bool shot;
     private void Start()
     {
         line = GetComponent<LineRenderer>();
